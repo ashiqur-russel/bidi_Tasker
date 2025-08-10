@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Todo {
   _id: string;
@@ -69,7 +70,7 @@ interface NestJSPaginatedResponse<T> {
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'http://localhost:3000/api/v1'; // Updated to match NestJS API prefix
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

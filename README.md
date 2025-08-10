@@ -1,30 +1,86 @@
-# Bidi Todo Application
+# Tasker - Full Stack Task Management Application
 
-A full-stack todo application with NestJS backend API and Angular frontend.
+A modern, production-grade task management application with NestJS backend API and Angular frontend. Features real-time task management, responsive design, and comprehensive API integration.
 
-## Project Structure
+## 🚀 Project Overview
+
+Tasker is a complete task management solution that helps users organize, track, and manage their tasks efficiently. Built with modern technologies and best practices for scalability and maintainability.
+
+## 📁 Project Structure
 
 ```
 tasker/
-├── bidi-api/          # NestJS backend API
-├── bidi-client/       # Angular frontend
-├── docker-compose.yml # MongoDB and Mongo Express setup
-├── mongo-init/        # MongoDB initialization scripts
-└── README.md
+├── bidi-api/              # NestJS backend API
+│   ├── src/
+│   │   ├── auth/          # Authentication module
+│   │   ├── todo/          # Todo management module
+│   │   ├── common/        # Shared utilities
+│   │   └── config/        # Configuration
+│   ├── Dockerfile         # Production Docker build
+│   └── README.md          # Backend documentation
+├── bidi-client/           # Angular frontend
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── dashboard/ # Dashboard module
+│   │   │   ├── tasks/     # Tasks module
+│   │   │   ├── projects/  # Projects module
+│   │   │   ├── calendar/  # Calendar module
+│   │   │   ├── analytics/ # Analytics module
+│   │   │   ├── settings/  # Settings module
+│   │   │   └── services/  # API services
+│   │   ├── environments/  # Environment configurations
+│   │   └── styles.scss    # Global styles
+│   ├── README.md          # Frontend documentation
+│   ├── QUICK_START.md     # Quick start guide
+│   └── GIT_ENVIRONMENT_GUIDE.md # Git best practices
+├── docker-compose.yml     # MongoDB and services setup
+├── mongo-init/           # MongoDB initialization scripts
+├── nginx/                # Nginx configuration
+├── deploy.sh             # Production deployment script
+├── dev-setup.sh          # Development setup script
+└── README.md             # This file
 ```
 
-## Prerequisites
+## 🎯 Features
 
-- Node.js (v16 or higher)
-- Docker and Docker Compose
-- npm or yarn
+### **Backend Features**
+- ✅ **RESTful API** - Complete CRUD operations for todos
+- ✅ **Authentication** - JWT-based authentication system
+- ✅ **Database Integration** - MongoDB with Mongoose ODM
+- ✅ **Validation** - Comprehensive input validation
+- ✅ **Documentation** - Swagger/OpenAPI interactive docs
+- ✅ **Health Monitoring** - Application and database health checks
+- ✅ **Security** - CORS, rate limiting, input sanitization
+- ✅ **Logging** - Structured logging with request/response tracking
 
-## Quick Start
+### **Frontend Features**
+- ✅ **Modern UI** - Responsive design with Material Design principles
+- ✅ **Dashboard** - Task overview with statistics and recent activities
+- ✅ **Task Management** - Full CRUD operations with real-time updates
+- ✅ **Project Organization** - Group tasks by projects
+- ✅ **Calendar Integration** - View tasks in calendar format
+- ✅ **Analytics** - Task performance and productivity insights
+- ✅ **Search & Filtering** - Advanced task filtering capabilities
+- ✅ **Notifications** - Real-time notification system
+- ✅ **Environment Management** - Multi-environment configuration
 
-### Development Mode
+## 🛠️ Prerequisites
 
-#### 1. Quick Setup (Recommended)
+- **Node.js** (v18 or higher)
+- **npm** (v9 or higher)
+- **Angular CLI** (v19 or higher)
+- **Docker** and **Docker Compose**
+- **Git**
 
+## ⚡ Quick Start
+
+### **1. Clone Repository**
+```bash
+git clone <repository-url>
+cd tasker
+```
+
+### **2. Automated Setup (Recommended)**
 ```bash
 # Run the automated development setup
 ./dev-setup.sh
@@ -33,57 +89,103 @@ tasker/
 This will:
 - Create environment files from templates
 - Start MongoDB and Mongo Express
-- Install dependencies
-- Set up the development environment
+- Install dependencies for both frontend and backend
+- Set up the complete development environment
 
-#### 2. Manual Setup
+### **3. Manual Setup**
 
-If you prefer manual setup:
-
+#### **Backend Setup**
 ```bash
-# Create environment files
-cp .env.development.example .env
-cp bidi-api/.env.example bidi-api/.env
+# Navigate to backend
+cd bidi-api
 
-# Start MongoDB and Mongo Express
+# Install dependencies
+npm install
+
+# Create environment file
+cp .env.example .env
+
+# Start MongoDB
 docker-compose up -d
-
-# Install API dependencies
-cd bidi-api && npm install
 
 # Start the API
 npm run start:dev
 ```
 
-#### 3. Start the Frontend
+#### **Frontend Setup**
+```bash
+# Navigate to frontend
+cd bidi-client
 
+# Install dependencies
+npm install
+
+# Set up environment files
+npm run env:setup
+
+# Start development server
+npm start
+```
+
+### **4. Access Services**
+
+| Service | URL | Description |
+|---------|-----|-------------|
+| **Frontend** | http://localhost:4200 | Angular application |
+| **Backend API** | http://localhost:3000/api/v1 | NestJS REST API |
+| **API Docs** | http://localhost:3000/api | Swagger documentation |
+| **MongoDB** | localhost:27017 | Database |
+| **Mongo Express** | http://localhost:8081 | Database management UI |
+
+## 📚 Documentation
+
+### **Frontend Documentation**
+- **[Frontend README](bidi-client/README.md)** - Comprehensive frontend guide
+- **[Quick Start Guide](bidi-client/QUICK_START.md)** - Get started in 5 minutes
+- **[Git Environment Guide](bidi-client/GIT_ENVIRONMENT_GUIDE.md)** - Git best practices
+
+### **Backend Documentation**
+- **[Backend README](bidi-api/README.md)** - Complete API documentation
+- **[API Endpoints](#api-documentation)** - Detailed endpoint reference
+
+## 🔧 Development
+
+### **Frontend Development**
 ```bash
 cd bidi-client
-npm install
-ng serve
+
+# Start development server
+npm start
+
+# Build for production
+npm run build:production
+
+# Run tests
+npm test
+
+# Environment management
+npm run env:setup    # Set up environment files
+npm run env:check    # Validate environment
 ```
 
-#### 4. Access Services
-
-- **API**: http://localhost:3000/api/v1
-- **Documentation**: http://localhost:3000/api
-- **MongoDB**: localhost:27017
-- **Mongo Express**: http://localhost:8081
-  - Username: admin (or your custom username)
-  - Password: dev_password_123 (or your custom password)
-
-### Production Mode
-
-#### 1. Set up Environment Variables
-
+### **Backend Development**
 ```bash
-# Copy and configure production environment
-cp .env.production.example .env.production
-# Edit .env.production with your production values
+cd bidi-api
+
+# Start development server
+npm run start:dev
+
+# Build for production
+npm run build
+
+# Run tests
+npm run test
+npm run test:e2e
 ```
 
-#### 2. Deploy to Production
+## 🚀 Deployment
 
+### **Production Deployment**
 ```bash
 # Run the automated deployment script
 ./deploy.sh
@@ -96,12 +198,160 @@ This will:
 - Start all services with health checks
 - Provide monitoring endpoints
 
-#### 3. Access Production Services
+### **Manual Deployment**
+```bash
+# Build frontend
+cd bidi-client
+npm run build:production
 
-- **API**: https://yourdomain.com/api/v1
-- **Health Check**: https://yourdomain.com/health
-- **Documentation**: https://yourdomain.com/docs
-- **MongoDB**: localhost:27017 (internal)
+# Build backend
+cd ../bidi-api
+npm run build
+
+# Deploy to your server
+# (See individual README files for detailed instructions)
+```
+
+## 🔌 API Integration
+
+The frontend integrates with the backend through a comprehensive API service:
+
+### **Available Endpoints**
+- `GET /api/v1/todos` - Get all tasks with pagination
+- `POST /api/v1/todos` - Create new task
+- `GET /api/v1/todos/:id` - Get specific task
+- `PATCH /api/v1/todos/:id` - Update task
+- `DELETE /api/v1/todos/:id` - Delete task
+- `PATCH /api/v1/todos/:id/toggle` - Toggle task completion
+- `GET /api/v1/todos/stats` - Get task statistics
+
+### **Frontend API Service**
+The `ApiService` in the frontend provides:
+- Type-safe HTTP client integration
+- Error handling and retry logic
+- Response transformation
+- Pagination support
+- Real-time data synchronization
+
+## 🌍 Environment Configuration
+
+### **Frontend Environments**
+- **Development**: `http://localhost:3000/api/v1`
+- **Staging**: `https://staging-api.tasker.com/api/v1`
+- **Production**: `https://api.tasker.com/api/v1`
+
+### **Backend Environments**
+- **Development**: Local MongoDB, development settings
+- **Production**: Production MongoDB, optimized settings
+
+## 🧪 Testing
+
+### **Frontend Testing**
+```bash
+cd bidi-client
+npm test              # Unit tests
+npm run e2e           # End-to-end tests
+```
+
+### **Backend Testing**
+```bash
+cd bidi-api
+npm run test          # Unit tests
+npm run test:e2e      # End-to-end tests
+```
+
+## 📊 Monitoring & Health Checks
+
+### **Application Health**
+- **Frontend**: Built-in Angular health monitoring
+- **Backend**: Comprehensive health endpoints
+  - `GET /api/v1/health` - Full health check
+  - `GET /api/v1/health/live` - Liveness probe
+  - `GET /api/v1/health/ready` - Readiness probe
+
+### **Database Health**
+- MongoDB connection monitoring
+- Query performance tracking
+- Connection pool management
+
+## 🔒 Security Features
+
+### **Backend Security**
+- JWT authentication
+- CORS protection
+- Rate limiting
+- Input validation and sanitization
+- Helmet.js security headers
+- Request logging and monitoring
+
+### **Frontend Security**
+- Environment-based configuration
+- Secure API communication
+- Input validation
+- XSS protection
+- CSRF protection
+
+## 🛠️ Technologies Used
+
+### **Backend Stack**
+- **Framework**: NestJS (Node.js)
+- **Database**: MongoDB with Mongoose
+- **Language**: TypeScript
+- **Validation**: class-validator
+- **Documentation**: Swagger/OpenAPI
+- **Containerization**: Docker
+
+### **Frontend Stack**
+- **Framework**: Angular 19
+- **Language**: TypeScript
+- **Styling**: SCSS with CSS custom properties
+- **HTTP Client**: Angular HttpClient
+- **Routing**: Angular Router with lazy loading
+- **Build Tool**: Angular CLI
+
+### **Infrastructure**
+- **Database**: MongoDB
+- **Reverse Proxy**: Nginx
+- **Containerization**: Docker & Docker Compose
+- **Process Management**: PM2 (production)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests for both frontend and backend
+5. Submit a pull request
+
+### **Development Guidelines**
+- Follow TypeScript best practices
+- Write comprehensive tests
+- Update documentation
+- Follow Git commit conventions
+- Ensure code quality with linting
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🆘 Support
+
+### **Getting Help**
+1. Check the [Frontend Quick Start](bidi-client/QUICK_START.md)
+2. Review [Frontend Documentation](bidi-client/README.md)
+3. Check [Backend Documentation](bidi-api/README.md)
+4. Run environment checks: `npm run env:check`
+5. Check health endpoints for backend issues
+
+### **Common Issues**
+- **Environment Setup**: Use `npm run env:setup` in frontend
+- **Database Connection**: Ensure MongoDB is running with Docker
+- **Port Conflicts**: Check for existing processes on ports 3000, 4200
+- **API Errors**: Verify backend is running and accessible
+
+---
+
+**Built with ❤️ using NestJS & Angular 19**
 
 ## API Documentation
 
@@ -450,69 +700,3 @@ cp .env.production.example .env.production
 - **Mongo Express**: http://localhost:8081
   - Username: admin (or your custom username)
   - Password: dev_password_123 (or your custom password)
-
-## Development
-
-### Backend Development
-
-```bash
-cd bidi-api
-npm run start:dev    # Development mode with hot reload
-npm run build        # Build for production
-npm run test         # Run tests
-npm run test:e2e     # Run end-to-end tests
-```
-
-### Frontend Development
-
-```bash
-cd bidi-client
-ng serve             # Development server
-ng build             # Build for production
-ng test              # Run tests
-```
-
-## Features
-
-### Development Features
-- ✅ CRUD operations for todos
-- ✅ Filter todos by completion status
-- ✅ Filter todos by priority
-- ✅ Toggle todo completion
-- ✅ MongoDB integration with Mongoose
-- ✅ Input validation with class-validator
-- ✅ CORS enabled
-- ✅ Docker setup for database
-- ✅ Mock data initialization
-
-### Production Features
-- ✅ **Security**: Helmet.js, CORS, rate limiting, input sanitization
-- ✅ **Logging**: Structured logging with Winston, request/response logging
-- ✅ **Error Handling**: Global exception filter with proper error responses
-- ✅ **API Documentation**: Swagger/OpenAPI with interactive documentation
-- ✅ **Health Checks**: Application, database, disk, and memory monitoring
-- ✅ **Pagination**: Efficient data pagination with metadata
-- ✅ **Validation**: Comprehensive input validation and sanitization
-- ✅ **Performance**: Compression, caching, optimized database queries
-- ✅ **Monitoring**: Health endpoints, uptime tracking, performance metrics
-- ✅ **Docker**: Multi-stage production Docker builds
-- ✅ **Reverse Proxy**: Nginx with SSL, security headers, rate limiting
-- ✅ **Deployment**: Automated deployment script with health checks
-
-## Technologies Used
-
-### Backend
-- NestJS
-- MongoDB with Mongoose
-- TypeScript
-- class-validator for validation
-- Docker for database
-
-### Frontend
-- Angular
-- TypeScript
-- SCSS for styling
-
-## License
-
-This project is licensed under the MIT License.

@@ -1,0 +1,8 @@
+node_modules
+bidi-client/node_modules
+bidi-client/dist
+bidi-client/.vscode
+
+
+bidi-api/node_modules
+.idea+

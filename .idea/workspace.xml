@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e2ed1cd-90c3-4caa-9a3e-9500b852a077" name="Changes" comment="fix: fix import module issue">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bidi-client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-client/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bidi-client/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-client/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bidi-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bidi-client/src/app/services/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-client/src/app/services/api.service.ts" afterDir="false" />
-    </list>
+    <list default="true" id="5e2ed1cd-90c3-4caa-9a3e-9500b852a077" name="Changes" comment="fix: fix import module issue" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1754860021457</updated>
-      <workItem from="1754860022458" duration="8142000" />
+      <workItem from="1754860022458" duration="8500000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />

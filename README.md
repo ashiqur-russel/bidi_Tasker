@@ -38,6 +38,7 @@ tasker/
 ├── nginx/                # Nginx configuration
 ├── deploy.sh             # Production deployment script
 ├── dev-setup.sh          # Development setup script
+├── package.json          # Monorepo package.json with workspaces
 └── README.md             # This file
 ```
 
@@ -80,54 +81,34 @@ git clone <repository-url>
 cd tasker
 ```
 
-### **2. Automated Setup (Recommended)**
+### **2. Install All Dependencies**
+```bash
+# Install dependencies for all workspaces
+npm run install:all
+```
+
+### **3. Automated Setup (Recommended)**
 ```bash
 # Run the automated development setup
-./dev-setup.sh
+npm run setup
 ```
 
 This will:
 - Create environment files from templates
 - Start MongoDB and Mongo Express
-- Install dependencies for both frontend and backend
 - Set up the complete development environment
 
-### **3. Manual Setup**
-
-#### **Backend Setup**
+### **4. Start Development Servers**
 ```bash
-# Navigate to backend
-cd bidi-api
+# Start both frontend and backend simultaneously
+npm run dev
 
-# Install dependencies
-npm install
-
-# Create environment file
-cp .env.example .env
-
-# Start MongoDB
-docker-compose up -d
-
-# Start the API
-npm run start:dev
+# Or start them individually:
+npm run dev:api      # Backend only
+npm run dev:client   # Frontend only
 ```
 
-#### **Frontend Setup**
-```bash
-# Navigate to frontend
-cd bidi-client
-
-# Install dependencies
-npm install
-
-# Set up environment files
-npm run env:setup
-
-# Start development server
-npm start
-```
-
-### **4. Access Services**
+### **5. Access Services**
 
 | Service | URL | Description |
 |---------|-----|-------------|
@@ -148,39 +129,50 @@ npm start
 - **[Backend README](bidi-api/README.md)** - Complete API documentation
 - **[API Endpoints](#api-documentation)** - Detailed endpoint reference
 
-## 🔧 Development
+## 🔧 Available Scripts
 
-### **Frontend Development**
+### **Development**
 ```bash
-cd bidi-client
-
-# Start development server
-npm start
-
-# Build for production
-npm run build:production
-
-# Run tests
-npm test
-
-# Environment management
-npm run env:setup    # Set up environment files
-npm run env:check    # Validate environment
+npm run dev              # Start both frontend and backend
+npm run dev:api          # Start backend only
+npm run dev:client       # Start frontend only
+npm run setup            # Automated development setup
 ```
 
-### **Backend Development**
+### **Building**
 ```bash
-cd bidi-api
+npm run build            # Build both frontend and backend
+npm run build:api        # Build backend only
+npm run build:client     # Build frontend for production
+npm run build:staging    # Build frontend for staging
+```
 
-# Start development server
-npm run start:dev
+### **Testing**
+```bash
+npm run test             # Run tests for both projects
+npm run test:api         # Run backend tests
+npm run test:client      # Run frontend tests
+```
 
-# Build for production
-npm run build
+### **Docker Management**
+```bash
+npm run docker:up        # Start Docker services
+npm run docker:down      # Stop Docker services
+npm run docker:logs      # View Docker logs
+```
 
-# Run tests
-npm run test
-npm run test:e2e
+### **Environment Management**
+```bash
+npm run env:setup        # Set up environment files
+npm run env:check        # Validate environment configuration
+```
+
+### **Maintenance**
+```bash
+npm run install:all      # Install dependencies for all workspaces
+npm run clean            # Clean all build artifacts
+npm run clean:api        # Clean backend build artifacts
+npm run clean:client     # Clean frontend build artifacts
 ```
 
 ## 🚀 Deployment
@@ -188,7 +180,7 @@ npm run test:e2e
 ### **Production Deployment**
 ```bash
 # Run the automated deployment script
-./deploy.sh
+npm run deploy
 ```
 
 This will:
@@ -200,12 +192,7 @@ This will:
 
 ### **Manual Deployment**
 ```bash
-# Build frontend
-cd bidi-client
-npm run build:production
-
-# Build backend
-cd ../bidi-api
+# Build both applications
 npm run build
 
 # Deploy to your server
@@ -248,16 +235,14 @@ The `ApiService` in the frontend provides:
 
 ### **Frontend Testing**
 ```bash
-cd bidi-client
-npm test              # Unit tests
-npm run e2e           # End-to-end tests
+npm run test:client      # Unit tests
+cd bidi-client && npm run e2e  # End-to-end tests
 ```
 
 ### **Backend Testing**
 ```bash
-cd bidi-api
-npm run test          # Unit tests
-npm run test:e2e      # End-to-end tests
+npm run test:api         # Unit tests
+cd bidi-api && npm run test:e2e  # End-to-end tests
 ```
 
 ## 📊 Monitoring & Health Checks
@@ -314,13 +299,14 @@ npm run test:e2e      # End-to-end tests
 - **Reverse Proxy**: Nginx
 - **Containerization**: Docker & Docker Compose
 - **Process Management**: PM2 (production)
+- **Monorepo**: npm workspaces
 
 ## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Run tests for both frontend and backend
+4. Run tests for both frontend and backend: `npm run test`
 5. Submit a pull request
 
 ### **Development Guidelines**
@@ -344,10 +330,11 @@ This project is licensed under the MIT License.
 5. Check health endpoints for backend issues
 
 ### **Common Issues**
-- **Environment Setup**: Use `npm run env:setup` in frontend
-- **Database Connection**: Ensure MongoDB is running with Docker
+- **Environment Setup**: Use `npm run env:setup`
+- **Database Connection**: Ensure MongoDB is running with `npm run docker:up`
 - **Port Conflicts**: Check for existing processes on ports 3000, 4200
-- **API Errors**: Verify backend is running and accessible
+- **API Errors**: Verify backend is running with `npm run dev:api`
+- **Dependencies**: Use `npm run install:all` to install all dependencies
 
 ---
 

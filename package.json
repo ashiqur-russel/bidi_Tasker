@@ -1,10 +1,50 @@
 {
   "name": "tasker",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Full-stack task management application with NestJS backend and Angular frontend",
+  "private": true,
+  "workspaces": [
+    "bidi-api",
+    "bidi-client"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:client\"",
+    "dev:api": "cd bidi-api && npm run start:dev",
+    "dev:client": "cd bidi-client && npm start",
+    "build": "npm run build:api && npm run build:client",
+    "build:api": "cd bidi-api && npm run build",
+    "build:client": "cd bidi-client && npm run build:production",
+    "build:staging": "cd bidi-client && npm run build:staging",
+    "install:all": "npm install && cd bidi-api && npm install && cd ../bidi-client && npm install",
+    "clean": "npm run clean:api && npm run clean:client",
+    "clean:api": "cd bidi-api && rm -rf dist node_modules",
+    "clean:client": "cd bidi-client && rm -rf dist node_modules",
+    "test": "npm run test:api && npm run test:client",
+    "test:api": "cd bidi-api && npm test",
+    "test:client": "cd bidi-client && npm test",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "setup": "./dev-setup.sh",
+    "deploy": "./deploy.sh",
+    "env:setup": "cd bidi-client && npm run env:setup",
+    "env:check": "cd bidi-client && npm run env:check"
   },
-  "private": true
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "task-management",
+    "nestjs",
+    "angular",
+    "mongodb",
+    "typescript",
+    "fullstack"
+  ],
+  "author": "Tasker Team",
+  "license": "MIT"
 }

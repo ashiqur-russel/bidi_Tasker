@@ -5,34 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e2ed1cd-90c3-4caa-9a3e-9500b852a077" name="Changes" comment="add docker, mongodb">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.env.development.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/.env.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/src/common/decorators/api-paginated-response.decorator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/src/common/dto/pagination.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/src/common/filters/http-exception.filter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/src/common/interceptors/logging.interceptor.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/src/config/configuration.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/src/health/health.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/src/todo/dto/create-todo.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/src/todo/dto/update-todo.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/src/todo/schemas/todo.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/src/todo/todo.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/src/todo/todo.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bidi-api/src/todo/todo.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deploy.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev-setup.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.prod.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-init/init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nginx/nginx.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bidi-api/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-api/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bidi-api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-api/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bidi-api/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-api/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bidi-api/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-api/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bidi-client/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-client/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bidi-client/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-client/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bidi-client/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-client/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bidi-client/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-client/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bidi-client/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-client/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bidi-client/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/bidi-client/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,26 +19,26 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/bidi-api" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "ashiqur-russel"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ashiqur-russel&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ashiqur-russel/bidi_Tasker.git",
-    "accountId": "15af8c5d-0c8e-4d08-919a-83eba084dfcd"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ashiqur-russel/bidi_Tasker.git&quot;,
+    &quot;accountId&quot;: &quot;15af8c5d-0c8e-4d08-919a-83eba084dfcd&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="3170tur62gTP9zof2xUSIS2ESFe" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -70,13 +49,13 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Users/ashiqur/Desktop/Projects/tasker/bidi-client/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/ashiqur/Desktop/Projects/tasker/bidi-api/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -94,7 +73,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1754860021457</updated>
-      <workItem from="1754860022458" duration="4473000" />
+      <workItem from="1754860022458" duration="6453000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -120,7 +99,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754862205770</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add docker, mongodb">
+      <option name="closed" value="true" />
+      <created>1754865246168</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1754865246168</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -5,18 +5,21 @@
   "private": true,
   "workspaces": [
     "bidi-api",
-    "bidi-client"
+    "bidi-client",
+    "shared"
   ],
   "scripts": {
     "dev": "concurrently \"npm run dev:api\" \"npm run dev:client\"",
     "dev:api": "cd bidi-api && npm run start:dev",
     "dev:client": "cd bidi-client && npm start",
-    "build": "npm run build:api && npm run build:client",
+    "build": "npm run build:shared && npm run build:api && npm run build:client",
+    "build:shared": "cd shared && npm run build",
     "build:api": "cd bidi-api && npm run build",
     "build:client": "cd bidi-client && npm run build:production",
     "build:staging": "cd bidi-client && npm run build:staging",
-    "install:all": "npm install && cd bidi-api && npm install && cd ../bidi-client && npm install",
-    "clean": "npm run clean:api && npm run clean:client",
+    "install:all": "npm install && cd shared && npm install && cd ../bidi-api && npm install && cd ../bidi-client && npm install",
+    "clean": "npm run clean:shared && npm run clean:api && npm run clean:client",
+    "clean:shared": "cd shared && npm run clean",
     "clean:api": "cd bidi-api && rm -rf dist node_modules",
     "clean:client": "cd bidi-client && rm -rf dist node_modules",
     "test": "npm run test:api && npm run test:client",
@@ -26,7 +29,6 @@
     "docker:down": "docker-compose -f infrastructure/docker/docker-compose.yml down",
     "docker:logs": "docker-compose -f infrastructure/docker/docker-compose.yml logs -f",
     "setup": "./scripts/development/dev-setup.sh",
-    "deploy": "./scripts/deployment/deploy.sh",
     "env:setup": "cd bidi-client && npm run env:setup",
     "env:check": "cd bidi-client && npm run env:check",
     "generate-docs": "cd bidi-api && npm run build && node scripts/generate-swagger.js",

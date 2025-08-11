@@ -44,3 +44,4 @@ export const ApiPaginatedResponse = <TModel extends Type<any>>(
     }),
   );
 };
+

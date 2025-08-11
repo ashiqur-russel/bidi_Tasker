@@ -97,3 +97,4 @@ echo "   - Update JWT_SECRET with a secure random string"
 echo "   - Configure proper firewall rules"
 echo "   - Set up monitoring and alerting"
 echo ""
+

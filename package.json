@@ -28,7 +28,11 @@
     "setup": "./dev-setup.sh",
     "deploy": "./deploy.sh",
     "env:setup": "cd bidi-client && npm run env:setup",
-    "env:check": "cd bidi-client && npm run env:check"
+    "env:check": "cd bidi-client && npm run env:check",
+    "generate-docs": "cd bidi-api && npm run build && node scripts/generate-swagger.js",
+    "serve-docs": "node serve-docs.js",
+    "docs": "npm run generate-docs && npm run serve-docs",
+    "update-docs": "./update-docs.sh"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

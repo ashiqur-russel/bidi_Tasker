@@ -98,6 +98,30 @@ This will:
 - Start MongoDB and Mongo Express
 - Set up the complete development environment
 
+### **4. API Documentation (Frontend Developers)**
+
+For frontend developers who need API documentation without running the backend:
+
+```bash
+# Generate and serve API documentation
+npm run docs
+```
+
+This will:
+- Generate static Swagger documentation from the API
+- Start a documentation server on http://localhost:8080
+- Allow you to explore and test API endpoints
+- API calls will be made to http://localhost:3000 (when backend is running)
+
+**Alternative commands:**
+```bash
+# Generate docs only
+npm run generate-docs
+
+# Serve existing docs only
+npm run serve-docs
+```
+
 ### **4. Start Development Servers**
 ```bash
 # Start both frontend and backend simultaneously
@@ -601,6 +625,7 @@ curl -X DELETE "http://localhost:3000/api/v1/todos/$TODO_ID"
 
 ### 🌐 Interactive Documentation
 
+#### **Option 1: Live API Documentation (Backend Running)**
 Visit **http://localhost:3000/api** to access the interactive Swagger UI documentation where you can:
 
 - ✅ **Explore all endpoints**
@@ -608,6 +633,22 @@ Visit **http://localhost:3000/api** to access the interactive Swagger UI documen
 - ✅ **View request/response schemas**
 - ✅ **See authentication requirements**
 - ✅ **Download OpenAPI specification**
+
+#### **Option 2: Static Documentation (Frontend Developers)**
+For frontend developers who don't need to run the backend:
+
+```bash
+# Generate and serve static documentation
+npm run docs
+```
+
+Then visit **http://localhost:8080** to access the documentation.
+
+**Benefits:**
+- 🚀 **No backend required** - Documentation works independently
+- 📚 **Always up-to-date** - Generated from latest API code
+- 🔄 **Easy updates** - Run `npm run generate-docs` when API changes
+- 💻 **Frontend-friendly** - Perfect for frontend development workflow
 
 ### 📝 Notes
 

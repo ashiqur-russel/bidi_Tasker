@@ -1,3 +1,3 @@
 // Re-export from shared package
-export { UpdateTodoDto } from '@tasker/shared';
+export { UpdateTodoDto } from '@ashiqur-russel/tasker-shared';
 

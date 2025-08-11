@@ -1,0 +1,5 @@
+#!/bin/bash
+# Simple API documentation viewer
+# Usage: ./api
+
+exec npm run view-api

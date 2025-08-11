@@ -41,3 +41,4 @@ export class PaginationDto {
   @IsOptional()
   sortOrder?: 'asc' | 'desc' = 'desc';
 }
+

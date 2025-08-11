@@ -75,3 +75,4 @@ db.users.insertMany([
 ]);
 
 print('Database bidi_todo initialized with mock data');
+

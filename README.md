@@ -98,6 +98,61 @@ This will:
 - Start MongoDB and Mongo Express
 - Set up the complete development environment
 
+### **4. API Documentation & Mock Server (Frontend Developers)**
+
+For frontend developers who need a complete development environment without running the backend:
+
+#### **🚀 Complete Mock Environment (Recommended)**
+```bash
+# Start mock API server + documentation + browser
+npm run start-mock
+```
+
+This will:
+- ✅ Start a mock API server on http://localhost:3000 with realistic data
+- ✅ Generate and serve Swagger documentation on http://localhost:8080
+- ✅ Automatically open both in your browser
+- ✅ Allow you to test all API endpoints with mock data
+- ✅ No database or backend required!
+
+#### **📚 Documentation Only**
+```bash
+# 🚀 ONE COMMAND - Generate and view API documentation
+npm run view-api
+
+# 🎯 ULTRA SIMPLE - Just run this file
+./api
+```
+
+This will:
+- ✅ Generate static Swagger documentation from the API
+- ✅ Start a documentation server on http://localhost:8080
+- ✅ Automatically open your browser to the documentation
+- ✅ Allow you to explore and test API endpoints
+- ✅ API calls will be made to http://localhost:3000 (when backend is running)
+
+**Alternative commands:**
+```bash
+# Generate and serve documentation
+npm run docs
+
+# Generate docs only
+npm run generate-docs
+
+# Serve existing docs only
+npm run serve-docs
+
+# Update docs when API changes
+npm run update-docs
+```
+
+**🎯 For Frontend Developers - Choose Your Style:**
+
+1. **Complete Mock Environment**: `npm run start-mock` - Mock API + Documentation + Browser
+2. **Ultra Simple**: `./api` - Just documentation
+3. **NPM Script**: `npm run view-api` - Standard npm command
+4. **Manual Control**: `npm run docs` - More control over the process
+
 ### **4. Start Development Servers**
 ```bash
 # Start both frontend and backend simultaneously
@@ -601,6 +656,7 @@ curl -X DELETE "http://localhost:3000/api/v1/todos/$TODO_ID"
 
 ### 🌐 Interactive Documentation
 
+#### **Option 1: Live API Documentation (Backend Running)**
 Visit **http://localhost:3000/api** to access the interactive Swagger UI documentation where you can:
 
 - ✅ **Explore all endpoints**
@@ -608,6 +664,22 @@ Visit **http://localhost:3000/api** to access the interactive Swagger UI documen
 - ✅ **View request/response schemas**
 - ✅ **See authentication requirements**
 - ✅ **Download OpenAPI specification**
+
+#### **Option 2: Static Documentation (Frontend Developers)**
+For frontend developers who don't need to run the backend:
+
+```bash
+# Generate and serve static documentation
+npm run docs
+```
+
+Then visit **http://localhost:8080** to access the documentation.
+
+**Benefits:**
+- 🚀 **No backend required** - Documentation works independently
+- 📚 **Always up-to-date** - Generated from latest API code
+- 🔄 **Easy updates** - Run `npm run generate-docs` when API changes
+- 💻 **Frontend-friendly** - Perfect for frontend development workflow
 
 ### 📝 Notes
 

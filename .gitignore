@@ -113,3 +113,7 @@ temp/
 
 # Angular specific
 .angular/
+
+# Generated API documentation
+api-docs/
+bidi-api/docs/

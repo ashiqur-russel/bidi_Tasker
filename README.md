@@ -98,10 +98,24 @@ This will:
 - Start MongoDB and Mongo Express
 - Set up the complete development environment
 
-### **4. API Documentation (Frontend Developers)**
+### **4. API Documentation & Mock Server (Frontend Developers)**
 
-For frontend developers who need API documentation without running the backend:
+For frontend developers who need a complete development environment without running the backend:
 
+#### **🚀 Complete Mock Environment (Recommended)**
+```bash
+# Start mock API server + documentation + browser
+npm run start-mock
+```
+
+This will:
+- ✅ Start a mock API server on http://localhost:3000 with realistic data
+- ✅ Generate and serve Swagger documentation on http://localhost:8080
+- ✅ Automatically open both in your browser
+- ✅ Allow you to test all API endpoints with mock data
+- ✅ No database or backend required!
+
+#### **📚 Documentation Only**
 ```bash
 # 🚀 ONE COMMAND - Generate and view API documentation
 npm run view-api
@@ -134,9 +148,10 @@ npm run update-docs
 
 **🎯 For Frontend Developers - Choose Your Style:**
 
-1. **Ultra Simple**: `./api` - Just run this file
-2. **NPM Script**: `npm run view-api` - Standard npm command
-3. **Manual Control**: `npm run docs` - More control over the process
+1. **Complete Mock Environment**: `npm run start-mock` - Mock API + Documentation + Browser
+2. **Ultra Simple**: `./api` - Just documentation
+3. **NPM Script**: `npm run view-api` - Standard npm command
+4. **Manual Control**: `npm run docs` - More control over the process
 
 ### **4. Start Development Servers**
 ```bash

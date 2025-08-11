@@ -5,36 +5,36 @@ const { join } = require('path');
 const { AppModule } = require('../dist/app.module');
 
 async function generateSwaggerDocs() {
-  try {
-    console.log('🚀 Generating Swagger documentation...');
-    
-    // Create a minimal app instance for documentation generation
-    const app = await NestFactory.create(AppModule, {
-      logger: false, // Disable logging for faster generation
-    });
+    try {
+        console.log('🚀 Generating Swagger documentation...');
 
-    // Set global prefix
-    app.setGlobalPrefix('api/v1');
+        // Create a minimal app instance for documentation generation
+        const app = await NestFactory.create(AppModule, {
+            logger: false, // Disable logging for faster generation
+        });
 
-    // Swagger configuration
-    const config = new DocumentBuilder()
-      .setTitle('Bidi Todo API')
-      .setDescription('A production-grade todo API with comprehensive features')
-      .setVersion('1.0')
-      .addBearerAuth()
-      .addTag('todos', 'Todo management endpoints')
-      .addTag('auth', 'Authentication endpoints')
-      .addTag('health', 'Health check endpoints')
-      .build();
+        // Set global prefix
+        app.setGlobalPrefix('api/v1');
 
-    const document = SwaggerModule.createDocument(app, config);
+        // Swagger configuration
+        const config = new DocumentBuilder()
+            .setTitle('Bidi Todo API')
+            .setDescription('A production-grade todo API with comprehensive features')
+            .setVersion('1.0')
+            .addBearerAuth()
+            .addTag('todos', 'Todo management endpoints')
+            .addTag('auth', 'Authentication endpoints')
+            .addTag('health', 'Health check endpoints')
+            .build();
 
-    // Create docs directory if it doesn't exist
-    const docsDir = join(__dirname, '..', 'docs');
-    mkdirSync(docsDir, { recursive: true });
+        const document = SwaggerModule.createDocument(app, config);
 
-    // Generate static files
-    const swaggerHtml = `
+        // Create docs directory if it doesn't exist
+        const docsDir = join(__dirname, '..', 'docs');
+        mkdirSync(docsDir, { recursive: true });
+
+        // Generate static files
+        const swaggerHtml = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,6 +89,7 @@ async function generateSwaggerDocs() {
                 requestInterceptor: function(request) {
                     // Add base URL for API calls (only for actual API endpoints, not swagger.json)
                     if (!request.url.startsWith('http') && !request.url.includes('swagger.json')) {
+                        // Use mock API server for frontend developers
                         request.url = 'http://localhost:3000' + request.url;
                     }
                     return request;
@@ -99,33 +100,33 @@ async function generateSwaggerDocs() {
 </body>
 </html>`;
 
-    // Write files
-    writeFileSync(join(docsDir, 'index.html'), swaggerHtml);
-    writeFileSync(join(docsDir, 'swagger.json'), JSON.stringify(document, null, 2));
+        // Write files
+        writeFileSync(join(docsDir, 'index.html'), swaggerHtml);
+        writeFileSync(join(docsDir, 'swagger.json'), JSON.stringify(document, null, 2));
 
-    // Also copy to root project for frontend developers
-    const rootDocsDir = join(__dirname, '..', '..', 'api-docs');
-    mkdirSync(rootDocsDir, { recursive: true });
-    writeFileSync(join(rootDocsDir, 'index.html'), swaggerHtml);
-    writeFileSync(join(rootDocsDir, 'swagger.json'), JSON.stringify(document, null, 2));
+        // Also copy to root project for frontend developers
+        const rootDocsDir = join(__dirname, '..', '..', 'api-docs');
+        mkdirSync(rootDocsDir, { recursive: true });
+        writeFileSync(join(rootDocsDir, 'index.html'), swaggerHtml);
+        writeFileSync(join(rootDocsDir, 'swagger.json'), JSON.stringify(document, null, 2));
 
-    await app.close();
-    
-    console.log('✅ Swagger documentation generated successfully!');
-    console.log('📁 Files created:');
-    console.log(`   - ${join(docsDir, 'index.html')}`);
-    console.log(`   - ${join(docsDir, 'swagger.json')}`);
-    console.log(`   - ${join(rootDocsDir, 'index.html')}`);
-    console.log(`   - ${join(rootDocsDir, 'swagger.json')}`);
-    console.log('\n🌐 To view the documentation:');
-    console.log('   1. Run: npm run serve-docs');
-    console.log('   2. Open: http://localhost:8080');
-    console.log('\n📝 Note: API calls will be made to http://localhost:3000');
-    
-  } catch (error) {
-    console.error('❌ Error generating Swagger documentation:', error);
-    process.exit(1);
-  }
+        await app.close();
+
+        console.log('✅ Swagger documentation generated successfully!');
+        console.log('📁 Files created:');
+        console.log(`   - ${join(docsDir, 'index.html')}`);
+        console.log(`   - ${join(docsDir, 'swagger.json')}`);
+        console.log(`   - ${join(rootDocsDir, 'index.html')}`);
+        console.log(`   - ${join(rootDocsDir, 'swagger.json')}`);
+        console.log('\n🌐 To view the documentation:');
+        console.log('   1. Run: npm run serve-docs');
+        console.log('   2. Open: http://localhost:8080');
+        console.log('\n📝 Note: API calls will be made to http://localhost:3000');
+
+    } catch (error) {
+        console.error('❌ Error generating Swagger documentation:', error);
+        process.exit(1);
+    }
 }
 
 generateSwaggerDocs();

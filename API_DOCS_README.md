@@ -1,10 +1,24 @@
-# API Documentation for Frontend Developers
+# API Documentation & Mock Server for Frontend Developers
 
-This guide explains how to use the API documentation without running the backend server.
+This guide explains how to use the API documentation and mock server without running the backend server.
 
 ## 🚀 Quick Start
 
-### **ONE COMMAND - Generate and View Documentation**
+### **🚀 Complete Mock Environment (Recommended)**
+
+```bash
+# Start mock API server + documentation + browser
+npm run start-mock
+```
+
+This will:
+1. ✅ Start a mock API server on http://localhost:3000 with realistic data
+2. ✅ Generate and serve Swagger documentation on http://localhost:8080
+3. ✅ Automatically open both in your browser
+4. ✅ Allow you to test all API endpoints with mock data
+5. ✅ No database or backend required!
+
+### **📚 Documentation Only**
 
 ```bash
 # 🚀 Generate, serve, and open API documentation
@@ -67,10 +81,21 @@ npm run update-docs
 npm run serve-docs
 ```
 
-## 🌐 Accessing Documentation
+## 🌐 Accessing Services
 
+### **Mock API Server**
+- **URL**: http://localhost:3000
+- **Features**:
+  - ✅ All API endpoints working with mock data
+  - ✅ Realistic data based on DTOs and schemas
+  - ✅ Supports pagination, filtering, and sorting
+  - ✅ CRUD operations (Create, Read, Update, Delete)
+  - ✅ Data persists during server session
+  - ✅ No database required
+
+### **API Documentation**
 - **URL**: http://localhost:8080
-- **API Base URL**: http://localhost:3000 (when backend is running)
+- **API Base URL**: http://localhost:3000 (points to mock server)
 - **Features**:
   - Interactive API testing
   - Request/response schemas
@@ -79,10 +104,32 @@ npm run serve-docs
 
 ## 💡 Tips
 
-1. **No Backend Required**: The documentation works independently
-2. **Always Up-to-Date**: Generated from the latest API code
-3. **Easy Updates**: Run `npm run update-docs` when API changes
-4. **Frontend-Friendly**: Perfect for frontend development workflow
+1. **Complete Independence**: No backend, database, or external dependencies required
+2. **Realistic Mock Data**: Based on actual DTOs and schemas from the NestJS project
+3. **Always Up-to-Date**: Generated from the latest API code
+4. **Easy Updates**: Run `npm run update-docs` when API changes
+5. **Frontend-Friendly**: Perfect for frontend development workflow
+6. **Data Persistence**: Mock data persists during server session (restart to reset)
+
+## 📊 Mock Data Features
+
+The mock server includes realistic data for testing:
+
+### **Todos Collection**
+- 5 sample todos with different priorities and completion status
+- Supports all CRUD operations
+- Includes pagination, filtering by status/priority, and sorting
+- Realistic timestamps and IDs
+
+### **Users Collection**
+- Sample user data for authentication testing
+- Realistic user profiles
+
+### **API Endpoints**
+- All health check endpoints
+- Complete todo management (GET, POST, PATCH, DELETE)
+- Statistics endpoint
+- Toggle completion endpoint
 
 ## 🔧 Troubleshooting
 

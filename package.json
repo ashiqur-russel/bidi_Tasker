@@ -33,7 +33,10 @@
     "serve-docs": "node serve-docs.js",
     "docs": "npm run generate-docs && npm run serve-docs",
     "update-docs": "./update-docs.sh",
-    "view-api": "./view-api.sh"
+    "view-api": "./view-api.sh",
+    "mock-api": "node mock-api-server.js",
+    "dev:mock": "concurrently \"npm run mock-api\" \"npm run serve-docs\"",
+    "start-mock": "./start-mock-dev.sh"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

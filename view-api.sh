@@ -29,6 +29,14 @@ else
 fi
 
 echo "🌐 Starting documentation server..."
+
+# Check if port 8080 is already in use
+if lsof -Pi :8080 -sTCP:LISTEN -t >/dev/null 2>&1; then
+    echo "⚠️  Port 8080 is already in use. Stopping existing server..."
+    pkill -f "node serve-docs.js" || true
+    sleep 2
+fi
+
 echo "📖 Opening browser to http://localhost:8080"
 echo ""
 echo "💡 Tips:"

@@ -87,8 +87,8 @@ async function generateSwaggerDocs() {
                 persistAuthorization: true,
                 tryItOutEnabled: true,
                 requestInterceptor: function(request) {
-                    // Add base URL for API calls
-                    if (!request.url.startsWith('http')) {
+                    // Add base URL for API calls (only for actual API endpoints, not swagger.json)
+                    if (!request.url.startsWith('http') && !request.url.includes('swagger.json')) {
                         request.url = 'http://localhost:3000' + request.url;
                     }
                     return request;

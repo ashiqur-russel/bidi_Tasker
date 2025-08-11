@@ -1,5 +1,3 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateTodoDto } from './create-todo.dto';
-
-export class UpdateTodoDto extends PartialType(CreateTodoDto) {}
+// Re-export from shared package
+export { UpdateTodoDto } from '@tasker/shared';
 

@@ -100,7 +100,7 @@ async function generateSwaggerDocs() {
         writeFileSync(join(docsDir, 'swagger.json'), JSON.stringify(document, null, 2));
 
         // Also copy to root project for frontend developers
-        const rootDocsDir = join(__dirname, '..', '..', 'api-docs');
+        const rootDocsDir = join(__dirname, '..', '..', 'docs', 'api', 'api-docs');
         mkdirSync(rootDocsDir, { recursive: true });
         writeFileSync(join(rootDocsDir, 'index.html'), swaggerHtml);
         writeFileSync(join(rootDocsDir, 'swagger.json'), JSON.stringify(document, null, 2));

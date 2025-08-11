@@ -14,13 +14,13 @@ if [ ! -f "package.json" ]; then
 fi
 
 # Check if documentation already exists
-if [ ! -f "api-docs/index.html" ]; then
+if [ ! -f "docs/api/api-docs/index.html" ]; then
     echo "📚 Generating API documentation..."
     npm run generate-docs
 else
     echo "📚 Documentation already exists, checking if it's up-to-date..."
     # Check if API has been modified since last generation
-    if [ "api-docs/index.html" -ot "bidi-api/src" ]; then
+    if [ "docs/api/api-docs/index.html" -ot "bidi-api/src" ]; then
         echo "🔄 API has been updated, regenerating documentation..."
         npm run generate-docs
     else

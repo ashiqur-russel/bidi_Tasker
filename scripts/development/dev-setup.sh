@@ -31,11 +31,11 @@ fi
 
 # Stop existing containers
 echo "🛑 Stopping existing containers..."
-docker-compose down --remove-orphans
+docker-compose -f infrastructure/docker/docker-compose.yml down --remove-orphans
 
 # Start MongoDB and Mongo Express
 echo "🗄️ Starting MongoDB and Mongo Express..."
-docker-compose up -d
+docker-compose -f infrastructure/docker/docker-compose.yml up -d
 
 # Wait for MongoDB to be ready
 echo "⏳ Waiting for MongoDB to be ready..."
@@ -43,7 +43,7 @@ timeout=60
 counter=0
 
 while [ $counter -lt $timeout ]; do
-    if docker-compose exec -T mongodb mongosh --eval "db.adminCommand('ping')" > /dev/null 2>&1; then
+    if docker-compose -f infrastructure/docker/docker-compose.yml exec -T mongodb mongosh --eval "db.adminCommand('ping')" > /dev/null 2>&1; then
         echo "✅ MongoDB is ready"
         break
     fi
@@ -54,7 +54,7 @@ done
 
 if [ $counter -eq $timeout ]; then
     echo "❌ Timeout waiting for MongoDB"
-    docker-compose logs mongodb
+    docker-compose -f infrastructure/docker/docker-compose.yml logs mongodb
     exit 1
 fi
 
@@ -83,8 +83,8 @@ echo "   - .env (root) - Docker services configuration"
 echo "   - bidi-api/.env - API configuration"
 echo ""
 echo "🔧 Useful Commands:"
-echo "   View logs: docker-compose logs -f"
-echo "   Stop services: docker-compose down"
-echo "   Restart services: docker-compose restart"
+echo "   View logs: docker-compose -f infrastructure/docker/docker-compose.yml logs -f"
+echo "   Stop services: docker-compose -f infrastructure/docker/docker-compose.yml down"
+echo "   Restart services: docker-compose -f infrastructure/docker/docker-compose.yml restart"
 echo ""
 

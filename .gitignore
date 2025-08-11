@@ -115,5 +115,5 @@ temp/
 .angular/
 
 # Generated API documentation
-api-docs/
+docs/api/api-docs/
 bidi-api/docs/

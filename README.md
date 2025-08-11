@@ -19,25 +19,27 @@ tasker/
 │       ├── TROUBLESHOOTING.md  # Troubleshooting guide
 │       └── MONOREPO_SETUP.md   # Monorepo setup guide
 ├── 🏗️ infrastructure/           # Infrastructure configuration
-│   ├── docker/                 # Docker configurations
-│   │   ├── docker-compose.yml  # Development services
-│   │   └── docker-compose.prod.yml # Production services
-│   └── nginx/                  # Nginx configuration
+│   └── docker/                 # Docker configurations
+│       └── docker-compose.yml  # Development services
 ├── 🛠️ scripts/                  # Automation scripts
-│   ├── development/            # Development scripts
-│   │   ├── dev-setup.sh       # Development environment setup
-│   │   ├── start-mock-dev.sh  # Mock environment startup
-│   │   ├── test-mock-api.sh   # Mock API testing
-│   │   ├── update-docs.sh     # Documentation updates
-│   │   └── view-api.sh        # API documentation viewer
-│   └── deployment/            # Deployment scripts
-│       └── deploy.sh          # Production deployment
+│   └── development/            # Development scripts
+│       ├── dev-setup.sh       # Development environment setup
+│       ├── start-mock-dev.sh  # Mock environment startup
+│       ├── test-mock-api.sh   # Mock API testing
+│       ├── update-docs.sh     # Documentation updates
+│       └── view-api.sh        # API documentation viewer
 ├── 🛠️ tools/                    # Development tools
 │   ├── dev-tools/             # Development utilities
 │   │   ├── mock-api-server.js # Mock API server
 │   │   └── serve-docs.js      # Documentation server
 │   └── scripts/               # Utility scripts
 │       └── api                # Quick API docs shortcut
+├── 📦 shared/                  # Shared types and DTOs
+│   ├── src/                   # Source files
+│   │   ├── types/            # TypeScript interfaces
+│   │   ├── dto/              # Data Transfer Objects
+│   │   └── interfaces/       # Service interfaces
+│   └── dist/                 # Compiled output
 ├── 📄 package.json            # Monorepo configuration
 ├── 📄 .env                    # Environment variables
 └── 📄 README.md               # This file
@@ -98,7 +100,6 @@ npm run api              # Quick shortcut for API docs
 ### **Environment Setup:**
 ```bash
 npm run setup            # Setup development environment
-npm run deploy           # Deploy to production
 npm run install:all      # Install all dependencies
 ```
 
@@ -159,6 +160,31 @@ cp .env.production.example .env.production
 nano .env.production
 ```
 
+## 📦 **Shared Package**
+
+The `shared` package contains all types, DTOs, and interfaces used across both the API and client:
+
+### **Features:**
+- ✅ **Type Safety**: Shared TypeScript interfaces
+- ✅ **Validation**: DTOs with class-validator decorators
+- ✅ **Swagger**: API documentation decorators
+- ✅ **Consistency**: Same types for frontend and backend
+
+### **Usage:**
+```bash
+# Build shared package
+npm run build:shared
+
+# Import in API or client
+import { ITodo, CreateTodoDto, Priority } from '@tasker/shared';
+```
+
+### **Available Types:**
+- **Todo Types**: `ITodo`, `ITodoCreate`, `Priority`, etc.
+- **User Types**: `IUser`, `IUserLogin`, `UserRole`, etc.
+- **Common Types**: `IPaginatedResponse`, `IApiResponse`, etc.
+- **DTOs**: `CreateTodoDto`, `UpdateTodoDto`, `LoginDto`, etc.
+
 ## 🚀 **Deployment**
 
 ### **Development:**
@@ -169,7 +195,11 @@ npm run dev
 
 ### **Production:**
 ```bash
-npm run deploy
+# Build all packages
+npm run build
+
+# Start services
+npm run docker:up
 ```
 
 ## 📖 **Documentation**
@@ -200,9 +230,9 @@ npm run deploy
 
 ### **Infrastructure:**
 - **Containerization**: Docker & Docker Compose
-- **Reverse Proxy**: Nginx with SSL
 - **Database**: MongoDB with Mongo Express
 - **Development Tools**: Mock API server, Documentation server
+- **Shared Package**: TypeScript types and DTOs
 
 ## 🔒 **Security Features**
 
@@ -256,7 +286,7 @@ This project is licensed under the MIT License.
 npm run setup          # Setup development environment
 npm run start-mock     # Start mock environment (frontend devs)
 npm run dev            # Start full development environment
-npm run deploy         # Deploy to production
+npm run build          # Build all packages
 ```
 
 ### **Key URLs:**
@@ -268,6 +298,7 @@ npm run deploy         # Deploy to production
 ### **File Locations:**
 - **API Code**: `bidi-api/src/`
 - **Frontend Code**: `bidi-client/src/`
+- **Shared Types**: `shared/src/`
 - **Docker Config**: `infrastructure/docker/`
 - **Documentation**: `docs/`
 - **Scripts**: `scripts/`

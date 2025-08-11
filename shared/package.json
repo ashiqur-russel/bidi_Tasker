@@ -1,0 +1,32 @@
+{
+  "name": "@tasker/shared",
+  "version": "1.0.0",
+  "description": "Shared types, DTOs, and interfaces for Tasker application",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "types",
+    "dto",
+    "interfaces",
+    "shared",
+    "tasker"
+  ],
+  "author": "Tasker Team",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "class-validator": "^0.14.0",
+    "class-transformer": "^0.5.1"
+  },
+  "peerDependencies": {
+    "@nestjs/swagger": "^7.0.0"
+  }
+}

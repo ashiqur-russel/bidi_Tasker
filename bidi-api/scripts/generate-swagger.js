@@ -16,18 +16,18 @@ async function generateSwaggerDocs() {
         // Set global prefix
         app.setGlobalPrefix('api/v1');
 
-            // Swagger configuration
-    const config = new DocumentBuilder()
-      .setTitle('Bidi Todo API')
-      .setDescription('A production-grade todo API with comprehensive features')
-      .setVersion('1.0')
-      .addServer('http://localhost:3000', 'Mock API Server (Frontend Development)')
-      .addServer('http://localhost:3000', 'Production API Server')
-      .addBearerAuth()
-      .addTag('todos', 'Todo management endpoints')
-      .addTag('auth', 'Authentication endpoints')
-      .addTag('health', 'Health check endpoints')
-      .build();
+        // Swagger configuration
+        const config = new DocumentBuilder()
+            .setTitle('Bidi Todo API')
+            .setDescription('A production-grade todo API with comprehensive features')
+            .setVersion('1.0')
+            .addServer('http://localhost:3000', 'Mock API Server (Frontend Development)')
+            .addServer('http://localhost:3000', 'Production API Server')
+            .addBearerAuth()
+            .addTag('todos', 'Todo management endpoints')
+            .addTag('auth', 'Authentication endpoints')
+            .addTag('health', 'Health check endpoints')
+            .build();
 
         const document = SwaggerModule.createDocument(app, config);
 

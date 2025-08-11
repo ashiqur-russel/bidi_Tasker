@@ -16,16 +16,18 @@ async function generateSwaggerDocs() {
         // Set global prefix
         app.setGlobalPrefix('api/v1');
 
-        // Swagger configuration
-        const config = new DocumentBuilder()
-            .setTitle('Bidi Todo API')
-            .setDescription('A production-grade todo API with comprehensive features')
-            .setVersion('1.0')
-            .addBearerAuth()
-            .addTag('todos', 'Todo management endpoints')
-            .addTag('auth', 'Authentication endpoints')
-            .addTag('health', 'Health check endpoints')
-            .build();
+            // Swagger configuration
+    const config = new DocumentBuilder()
+      .setTitle('Bidi Todo API')
+      .setDescription('A production-grade todo API with comprehensive features')
+      .setVersion('1.0')
+      .addServer('http://localhost:3000', 'Mock API Server (Frontend Development)')
+      .addServer('http://localhost:3000', 'Production API Server')
+      .addBearerAuth()
+      .addTag('todos', 'Todo management endpoints')
+      .addTag('auth', 'Authentication endpoints')
+      .addTag('health', 'Health check endpoints')
+      .build();
 
         const document = SwaggerModule.createDocument(app, config);
 
@@ -86,14 +88,7 @@ async function generateSwaggerDocs() {
                 layout: "StandaloneLayout",
                 persistAuthorization: true,
                 tryItOutEnabled: true,
-                requestInterceptor: function(request) {
-                    // Add base URL for API calls (only for actual API endpoints, not swagger.json)
-                    if (!request.url.startsWith('http') && !request.url.includes('swagger.json')) {
-                        // Use mock API server for frontend developers
-                        request.url = 'http://localhost:3000' + request.url;
-                    }
-                    return request;
-                }
+                // Server selection will handle the base URL automatically
             });
         };
     </script>

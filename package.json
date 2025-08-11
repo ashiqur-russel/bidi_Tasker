@@ -36,7 +36,8 @@
     "view-api": "./view-api.sh",
     "mock-api": "node mock-api-server.js",
     "dev:mock": "concurrently \"npm run mock-api\" \"npm run serve-docs\"",
-    "start-mock": "./start-mock-dev.sh"
+    "start-mock": "./start-mock-dev.sh",
+    "test-mock": "./test-mock-api.sh"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

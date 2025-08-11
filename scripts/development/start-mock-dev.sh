@@ -15,7 +15,7 @@ if [ ! -f "package.json" ]; then
 fi
 
 # Check if documentation exists, generate if not
-if [ ! -f "api-docs/index.html" ]; then
+if [ ! -f "docs/api/api-docs/index.html" ]; then
     echo "📚 Generating API documentation..."
     npm run generate-docs
 fi

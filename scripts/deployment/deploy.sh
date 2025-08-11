@@ -32,24 +32,24 @@ done
 echo "✅ Environment variables validated"
 
 # Create SSL directory if it doesn't exist
-mkdir -p nginx/ssl
+mkdir -p infrastructure/nginx/ssl
 
 # Generate self-signed SSL certificate for development (replace with real certs in production)
-if [ ! -f nginx/ssl/cert.pem ] || [ ! -f nginx/ssl/key.pem ]; then
+if [ ! -f infrastructure/nginx/ssl/cert.pem ] || [ ! -f infrastructure/nginx/ssl/key.pem ]; then
     echo "🔐 Generating self-signed SSL certificate..."
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-        -keyout nginx/ssl/key.pem \
-        -out nginx/ssl/cert.pem \
+        -keyout infrastructure/nginx/ssl/key.pem \
+        -out infrastructure/nginx/ssl/cert.pem \
         -subj "/C=US/ST=State/L=City/O=Organization/CN=localhost"
 fi
 
 # Stop existing containers
 echo "🛑 Stopping existing containers..."
-docker-compose -f docker-compose.prod.yml down --remove-orphans
+docker-compose -f infrastructure/docker/docker-compose.prod.yml down --remove-orphans
 
 # Build and start production containers
 echo "🔨 Building and starting production containers..."
-docker-compose -f docker-compose.prod.yml up -d --build
+docker-compose -f infrastructure/docker/docker-compose.prod.yml up -d --build
 
 # Wait for services to be healthy
 echo "⏳ Waiting for services to be healthy..."
@@ -68,13 +68,13 @@ done
 
 if [ $counter -eq $timeout ]; then
     echo "❌ Timeout waiting for services to be healthy"
-    docker-compose -f docker-compose.prod.yml logs
+    docker-compose -f infrastructure/docker/docker-compose.prod.yml logs
     exit 1
 fi
 
 # Run database migrations (if any)
 echo "🗄️ Checking database connection..."
-docker-compose -f docker-compose.prod.yml exec -T api npm run migration:run 2>/dev/null || echo "No migrations to run"
+docker-compose -f infrastructure/docker/docker-compose.prod.yml exec -T api npm run migration:run 2>/dev/null || echo "No migrations to run"
 
 # Display deployment information
 echo ""
@@ -87,9 +87,9 @@ echo "   Documentation: https://localhost/docs"
 echo "   MongoDB: localhost:27017"
 echo ""
 echo "🔧 Useful Commands:"
-echo "   View logs: docker-compose -f docker-compose.prod.yml logs -f"
-echo "   Stop services: docker-compose -f docker-compose.prod.yml down"
-echo "   Restart services: docker-compose -f docker-compose.prod.yml restart"
+echo "   View logs: docker-compose -f infrastructure/docker/docker-compose.prod.yml logs -f"
+echo "   Stop services: docker-compose -f infrastructure/docker/docker-compose.prod.yml down"
+echo "   Restart services: docker-compose -f infrastructure/docker/docker-compose.prod.yml restart"
 echo ""
 echo "⚠️  Security Notes:"
 echo "   - Replace self-signed SSL certificate with real certificates"

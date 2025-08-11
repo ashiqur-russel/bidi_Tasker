@@ -89,8 +89,7 @@ const mockDatabase = {
   //     updatedAt: '2024-01-01T10:00:00.000Z'
   //   }
   // ]
-};
-};
+}
 
 // Helper functions
 function generateId() {

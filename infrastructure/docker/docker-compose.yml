@@ -11,7 +11,7 @@ services:
       MONGO_INITDB_DATABASE: ${MONGO_DATABASE:-bidi_todo}
     volumes:
       - mongodb_data:/data/db
-      - ./mongo-init:/docker-entrypoint-initdb.d
+      - ../../database/mongo-init:/docker-entrypoint-initdb.d
     networks:
       - bidi_network
     healthcheck:

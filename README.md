@@ -1,761 +1,274 @@
-# Tasker - Full Stack Task Management Application
+# 🚀 Tasker - Full-Stack Task Management Application
 
-A modern, production-grade task management application with NestJS backend API and Angular frontend. Features real-time task management, responsive design, and comprehensive API integration.
+A production-grade task management application built with **NestJS** backend and **Angular** frontend, featuring MongoDB, Docker, and comprehensive development tools.
 
-## 🚀 Project Overview
-
-Tasker is a complete task management solution that helps users organize, track, and manage their tasks efficiently. Built with modern technologies and best practices for scalability and maintainability.
-
-## 📁 Project Structure
+## 📁 **Project Structure**
 
 ```
 tasker/
-├── bidi-api/              # NestJS backend API
-│   ├── src/
-│   │   ├── auth/          # Authentication module
-│   │   ├── todo/          # Todo management module
-│   │   ├── common/        # Shared utilities
-│   │   └── config/        # Configuration
-│   ├── Dockerfile         # Production Docker build
-│   └── README.md          # Backend documentation
-├── bidi-client/           # Angular frontend
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── dashboard/ # Dashboard module
-│   │   │   ├── tasks/     # Tasks module
-│   │   │   ├── projects/  # Projects module
-│   │   │   ├── calendar/  # Calendar module
-│   │   │   ├── analytics/ # Analytics module
-│   │   │   ├── settings/  # Settings module
-│   │   │   └── services/  # API services
-│   │   ├── environments/  # Environment configurations
-│   │   └── styles.scss    # Global styles
-│   ├── README.md          # Frontend documentation
-│   ├── QUICK_START.md     # Quick start guide
-│   └── GIT_ENVIRONMENT_GUIDE.md # Git best practices
-├── docker-compose.yml     # MongoDB and services setup
-├── mongo-init/           # MongoDB initialization scripts
-├── nginx/                # Nginx configuration
-├── deploy.sh             # Production deployment script
-├── dev-setup.sh          # Development setup script
-├── package.json          # Monorepo package.json with workspaces
-└── README.md             # This file
+├── 📦 bidi-api/                 # NestJS Backend API
+├── 🎨 bidi-client/              # Angular Frontend
+├── 🗄️ database/                 # Database initialization
+│   └── mongo-init/              # MongoDB setup scripts
+├── 📚 docs/                     # Documentation
+│   ├── api/                     # API documentation
+│   │   ├── api-docs/           # Generated Swagger docs
+│   │   └── API_DOCS_README.md  # API docs guide
+│   └── guides/                  # Development guides
+│       ├── EXTEND_MOCK_API.md  # Mock API extension guide
+│       ├── TROUBLESHOOTING.md  # Troubleshooting guide
+│       └── MONOREPO_SETUP.md   # Monorepo setup guide
+├── 🏗️ infrastructure/           # Infrastructure configuration
+│   ├── docker/                 # Docker configurations
+│   │   ├── docker-compose.yml  # Development services
+│   │   └── docker-compose.prod.yml # Production services
+│   └── nginx/                  # Nginx configuration
+├── 🛠️ scripts/                  # Automation scripts
+│   ├── development/            # Development scripts
+│   │   ├── dev-setup.sh       # Development environment setup
+│   │   ├── start-mock-dev.sh  # Mock environment startup
+│   │   ├── test-mock-api.sh   # Mock API testing
+│   │   ├── update-docs.sh     # Documentation updates
+│   │   └── view-api.sh        # API documentation viewer
+│   └── deployment/            # Deployment scripts
+│       └── deploy.sh          # Production deployment
+├── 🛠️ tools/                    # Development tools
+│   ├── dev-tools/             # Development utilities
+│   │   ├── mock-api-server.js # Mock API server
+│   │   └── serve-docs.js      # Documentation server
+│   └── scripts/               # Utility scripts
+│       └── api                # Quick API docs shortcut
+├── 📄 package.json            # Monorepo configuration
+├── 📄 .env                    # Environment variables
+└── 📄 README.md               # This file
 ```
 
-## 🎯 Features
+## 🚀 **Quick Start**
 
-### **Backend Features**
-- ✅ **RESTful API** - Complete CRUD operations for todos
-- ✅ **Authentication** - JWT-based authentication system
-- ✅ **Database Integration** - MongoDB with Mongoose ODM
-- ✅ **Validation** - Comprehensive input validation
-- ✅ **Documentation** - Swagger/OpenAPI interactive docs
-- ✅ **Health Monitoring** - Application and database health checks
-- ✅ **Security** - CORS, rate limiting, input sanitization
-- ✅ **Logging** - Structured logging with request/response tracking
-
-### **Frontend Features**
-- ✅ **Modern UI** - Responsive design with Material Design principles
-- ✅ **Dashboard** - Task overview with statistics and recent activities
-- ✅ **Task Management** - Full CRUD operations with real-time updates
-- ✅ **Project Organization** - Group tasks by projects
-- ✅ **Calendar Integration** - View tasks in calendar format
-- ✅ **Analytics** - Task performance and productivity insights
-- ✅ **Search & Filtering** - Advanced task filtering capabilities
-- ✅ **Notifications** - Real-time notification system
-- ✅ **Environment Management** - Multi-environment configuration
-
-## 🛠️ Prerequisites
-
-- **Node.js** (v18 or higher)
-- **npm** (v9 or higher)
-- **Angular CLI** (v19 or higher)
-- **Docker** and **Docker Compose**
-- **Git**
-
-## ⚡ Quick Start
-
-### **1. Clone Repository**
+### **For Backend Developers:**
 ```bash
-git clone <repository-url>
-cd tasker
-```
-
-### **2. Install All Dependencies**
-```bash
-# Install dependencies for all workspaces
-npm run install:all
-```
-
-### **3. Automated Setup (Recommended)**
-```bash
-# Run the automated development setup
+# Setup development environment
 npm run setup
+
+# Start API development server
+npm run dev:api
 ```
 
-This will:
-- Create environment files from templates
-- Start MongoDB and Mongo Express
-- Set up the complete development environment
-
-### **4. API Documentation & Mock Server (Frontend Developers)**
-
-For frontend developers who need a complete development environment without running the backend:
-
-#### **🚀 Complete Mock Environment (Recommended)**
+### **For Frontend Developers:**
 ```bash
-# Start mock API server + documentation + browser
+# 🚀 ONE COMMAND - Complete mock environment
 npm run start-mock
 ```
 
-This will:
-- ✅ Start a mock API server on http://localhost:3000 with realistic data
-- ✅ Generate and serve Swagger documentation on http://localhost:8080
-- ✅ Automatically open both in your browser
-- ✅ Allow you to test all API endpoints with mock data
+### **For Full-Stack Development:**
+```bash
+# Setup everything
+npm run setup
+
+# Start both frontend and backend
+npm run dev
+```
+
+## 🛠️ **Development Commands**
+
+### **Core Development:**
+```bash
+npm run dev              # Start both frontend and backend
+npm run dev:api          # Start NestJS API only
+npm run dev:client       # Start Angular frontend only
+npm run build            # Build both applications
+npm run test             # Run all tests
+```
+
+### **Docker Services:**
+```bash
+npm run docker:up        # Start MongoDB and Mongo Express
+npm run docker:down      # Stop all Docker services
+npm run docker:logs      # View Docker logs
+```
+
+### **API Documentation (Frontend Developers):**
+```bash
+npm run start-mock       # 🚀 Complete mock environment
+npm run view-api         # View API documentation only
+npm run update-docs      # Update documentation
+npm run api              # Quick shortcut for API docs
+```
+
+### **Environment Setup:**
+```bash
+npm run setup            # Setup development environment
+npm run deploy           # Deploy to production
+npm run install:all      # Install all dependencies
+```
+
+## 📚 **API Documentation**
+
+### **For Frontend Developers:**
+
+#### **🚀 Complete Mock Environment (Recommended)**
+```bash
+npm run start-mock
+```
+This provides:
+- ✅ Mock API server on http://localhost:3000
+- ✅ Swagger documentation on http://localhost:8080
+- ✅ Realistic mock data for all endpoints
 - ✅ No database or backend required!
 
 #### **📚 Documentation Only**
 ```bash
-# 🚀 ONE COMMAND - Generate and view API documentation
 npm run view-api
-
-# 🎯 ULTRA SIMPLE - Just run this file
-./api
 ```
 
-This will:
-- ✅ Generate static Swagger documentation from the API
-- ✅ Start a documentation server on http://localhost:8080
-- ✅ Automatically open your browser to the documentation
-- ✅ Allow you to explore and test API endpoints
-- ✅ API calls will be made to http://localhost:3000 (when backend is running)
+### **For Backend Developers:**
+- **Swagger UI**: http://localhost:3000/api (when API is running)
+- **Health Check**: http://localhost:3000/api/v1/health
+- **API Base URL**: http://localhost:3000/api/v1
 
-**Alternative commands:**
+## 🗄️ **Database**
+
+### **Development:**
+- **MongoDB**: localhost:27017
+- **Database**: bidi_todo
+- **Mongo Express**: http://localhost:8081
+
+### **Production:**
+- **MongoDB**: Containerized with authentication
+- **Nginx**: Reverse proxy with SSL
+
+## 🔧 **Environment Configuration**
+
+### **Development Environment:**
 ```bash
-# Generate and serve documentation
-npm run docs
+# Copy environment templates
+cp .env.development.example .env
+cp bidi-api/.env.example bidi-api/.env
 
-# Generate docs only
-npm run generate-docs
-
-# Serve existing docs only
-npm run serve-docs
-
-# Update docs when API changes
-npm run update-docs
+# Edit as needed
+nano .env
+nano bidi-api/.env
 ```
 
-**🎯 For Frontend Developers - Choose Your Style:**
-
-1. **Complete Mock Environment**: `npm run start-mock` - Mock API + Documentation + Browser
-2. **Ultra Simple**: `./api` - Just documentation
-3. **NPM Script**: `npm run view-api` - Standard npm command
-4. **Manual Control**: `npm run docs` - More control over the process
-
-### **4. Start Development Servers**
+### **Production Environment:**
 ```bash
-# Start both frontend and backend simultaneously
+# Copy production template
+cp .env.production.example .env.production
+
+# Edit with production values
+nano .env.production
+```
+
+## 🚀 **Deployment**
+
+### **Development:**
+```bash
+npm run setup
 npm run dev
-
-# Or start them individually:
-npm run dev:api      # Backend only
-npm run dev:client   # Frontend only
 ```
 
-### **5. Access Services**
-
-| Service | URL | Description |
-|---------|-----|-------------|
-| **Frontend** | http://localhost:4200 | Angular application |
-| **Backend API** | http://localhost:3000/api/v1 | NestJS REST API |
-| **API Docs** | http://localhost:3000/api | Swagger documentation |
-| **MongoDB** | localhost:27017 | Database |
-| **Mongo Express** | http://localhost:8081 | Database management UI |
-
-## 📚 Documentation
-
-### **Frontend Documentation**
-- **[Frontend README](bidi-client/README.md)** - Comprehensive frontend guide
-- **[Quick Start Guide](bidi-client/QUICK_START.md)** - Get started in 5 minutes
-- **[Git Environment Guide](bidi-client/GIT_ENVIRONMENT_GUIDE.md)** - Git best practices
-
-### **Backend Documentation**
-- **[Backend README](bidi-api/README.md)** - Complete API documentation
-- **[API Endpoints](#api-documentation)** - Detailed endpoint reference
-
-## 🔧 Available Scripts
-
-### **Development**
+### **Production:**
 ```bash
-npm run dev              # Start both frontend and backend
-npm run dev:api          # Start backend only
-npm run dev:client       # Start frontend only
-npm run setup            # Automated development setup
-```
-
-### **Building**
-```bash
-npm run build            # Build both frontend and backend
-npm run build:api        # Build backend only
-npm run build:client     # Build frontend for production
-npm run build:staging    # Build frontend for staging
-```
-
-### **Testing**
-```bash
-npm run test             # Run tests for both projects
-npm run test:api         # Run backend tests
-npm run test:client      # Run frontend tests
-```
-
-### **Docker Management**
-```bash
-npm run docker:up        # Start Docker services
-npm run docker:down      # Stop Docker services
-npm run docker:logs      # View Docker logs
-```
-
-### **Environment Management**
-```bash
-npm run env:setup        # Set up environment files
-npm run env:check        # Validate environment configuration
-```
-
-### **Maintenance**
-```bash
-npm run install:all      # Install dependencies for all workspaces
-npm run clean            # Clean all build artifacts
-npm run clean:api        # Clean backend build artifacts
-npm run clean:client     # Clean frontend build artifacts
-```
-
-## 🚀 Deployment
-
-### **Production Deployment**
-```bash
-# Run the automated deployment script
 npm run deploy
 ```
 
-This will:
-- Build production Docker images
-- Set up SSL certificates
-- Configure Nginx reverse proxy
-- Start all services with health checks
-- Provide monitoring endpoints
+## 📖 **Documentation**
 
-### **Manual Deployment**
-```bash
-# Build both applications
-npm run build
+- **[API Documentation Guide](docs/api/API_DOCS_README.md)** - Complete guide for frontend developers
+- **[Mock API Extension Guide](docs/guides/EXTEND_MOCK_API.md)** - How to extend mock API
+- **[Troubleshooting Guide](docs/guides/TROUBLESHOOTING.md)** - Common issues and solutions
+- **[Monorepo Setup Guide](docs/guides/MONOREPO_SETUP.md)** - Detailed setup instructions
 
-# Deploy to your server
-# (See individual README files for detailed instructions)
-```
+## 🏗️ **Architecture**
 
-## 🔌 API Integration
-
-The frontend integrates with the backend through a comprehensive API service:
-
-### **Available Endpoints**
-- `GET /api/v1/todos` - Get all tasks with pagination
-- `POST /api/v1/todos` - Create new task
-- `GET /api/v1/todos/:id` - Get specific task
-- `PATCH /api/v1/todos/:id` - Update task
-- `DELETE /api/v1/todos/:id` - Delete task
-- `PATCH /api/v1/todos/:id/toggle` - Toggle task completion
-- `GET /api/v1/todos/stats` - Get task statistics
-
-### **Frontend API Service**
-The `ApiService` in the frontend provides:
-- Type-safe HTTP client integration
-- Error handling and retry logic
-- Response transformation
-- Pagination support
-- Real-time data synchronization
-
-## 🌍 Environment Configuration
-
-### **Frontend Environments**
-- **Development**: `http://localhost:3000/api/v1`
-- **Staging**: `https://staging-api.tasker.com/api/v1`
-- **Production**: `https://api.tasker.com/api/v1`
-
-### **Backend Environments**
-- **Development**: Local MongoDB, development settings
-- **Production**: Production MongoDB, optimized settings
-
-## 🧪 Testing
-
-### **Frontend Testing**
-```bash
-npm run test:client      # Unit tests
-cd bidi-client && npm run e2e  # End-to-end tests
-```
-
-### **Backend Testing**
-```bash
-npm run test:api         # Unit tests
-cd bidi-api && npm run test:e2e  # End-to-end tests
-```
-
-## 📊 Monitoring & Health Checks
-
-### **Application Health**
-- **Frontend**: Built-in Angular health monitoring
-- **Backend**: Comprehensive health endpoints
-  - `GET /api/v1/health` - Full health check
-  - `GET /api/v1/health/live` - Liveness probe
-  - `GET /api/v1/health/ready` - Readiness probe
-
-### **Database Health**
-- MongoDB connection monitoring
-- Query performance tracking
-- Connection pool management
-
-## 🔒 Security Features
-
-### **Backend Security**
-- JWT authentication
-- CORS protection
-- Rate limiting
-- Input validation and sanitization
-- Helmet.js security headers
-- Request logging and monitoring
-
-### **Frontend Security**
-- Environment-based configuration
-- Secure API communication
-- Input validation
-- XSS protection
-- CSRF protection
-
-## 🛠️ Technologies Used
-
-### **Backend Stack**
-- **Framework**: NestJS (Node.js)
-- **Database**: MongoDB with Mongoose
-- **Language**: TypeScript
-- **Validation**: class-validator
+### **Backend (NestJS):**
+- **Framework**: NestJS with TypeScript
+- **Database**: MongoDB with Mongoose ODM
+- **Authentication**: JWT-based
 - **Documentation**: Swagger/OpenAPI
-- **Containerization**: Docker
+- **Validation**: class-validator
+- **Security**: Helmet, CORS, Rate Limiting
+- **Logging**: Winston with custom interceptors
+- **Health Checks**: Terminus
 
-### **Frontend Stack**
-- **Framework**: Angular 19
-- **Language**: TypeScript
-- **Styling**: SCSS with CSS custom properties
+### **Frontend (Angular):**
+- **Framework**: Angular with TypeScript
+- **Styling**: SCSS
+- **State Management**: Angular Services
 - **HTTP Client**: Angular HttpClient
-- **Routing**: Angular Router with lazy loading
-- **Build Tool**: Angular CLI
+- **Routing**: Angular Router
 
-### **Infrastructure**
-- **Database**: MongoDB
-- **Reverse Proxy**: Nginx
+### **Infrastructure:**
 - **Containerization**: Docker & Docker Compose
-- **Process Management**: PM2 (production)
-- **Monorepo**: npm workspaces
+- **Reverse Proxy**: Nginx with SSL
+- **Database**: MongoDB with Mongo Express
+- **Development Tools**: Mock API server, Documentation server
 
-## 🤝 Contributing
+## 🔒 **Security Features**
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests for both frontend and backend: `npm run test`
-5. Submit a pull request
+- **Helmet.js**: Security headers
+- **CORS**: Cross-origin resource sharing
+- **Rate Limiting**: Request throttling
+- **Input Validation**: Request sanitization
+- **JWT Authentication**: Secure token-based auth
+- **SSL/TLS**: HTTPS in production
 
-### **Development Guidelines**
-- Follow TypeScript best practices
-- Write comprehensive tests
-- Update documentation
-- Follow Git commit conventions
-- Ensure code quality with linting
+## 📊 **Monitoring & Health**
 
-## 📄 License
+- **Health Checks**: /api/v1/health
+- **Liveness Probe**: /api/v1/health/live
+- **Readiness Probe**: /api/v1/health/ready
+- **Database Monitoring**: Mongo Express
+- **Logging**: Structured JSON logs
+
+## 🛠️ **Development Workflow**
+
+### **Adding New Features:**
+1. **Backend**: Add DTOs, schemas, controllers, services
+2. **Frontend**: Add components, services, routing
+3. **Documentation**: Update Swagger docs automatically
+4. **Testing**: Unit and integration tests
+
+### **Frontend Development:**
+1. **Start Mock Environment**: `npm run start-mock`
+2. **View API Docs**: http://localhost:8080
+3. **Test Endpoints**: Use Swagger UI
+4. **Update Docs**: `npm run update-docs`
+
+## 🤝 **Contributing**
+
+1. **Fork** the repository
+2. **Create** a feature branch
+3. **Make** your changes
+4. **Test** thoroughly
+5. **Submit** a pull request
+
+## 📄 **License**
 
 This project is licensed under the MIT License.
 
-## 🆘 Support
-
-### **Getting Help**
-1. Check the [Frontend Quick Start](bidi-client/QUICK_START.md)
-2. Review [Frontend Documentation](bidi-client/README.md)
-3. Check [Backend Documentation](bidi-api/README.md)
-4. Run environment checks: `npm run env:check`
-5. Check health endpoints for backend issues
-
-### **Common Issues**
-- **Environment Setup**: Use `npm run env:setup`
-- **Database Connection**: Ensure MongoDB is running with `npm run docker:up`
-- **Port Conflicts**: Check for existing processes on ports 3000, 4200
-- **API Errors**: Verify backend is running with `npm run dev:api`
-- **Dependencies**: Use `npm run install:all` to install all dependencies
-
 ---
 
-**Built with ❤️ using NestJS & Angular 19**
+## 🎯 **Quick Reference**
 
-## API Documentation
-
-### 🚀 Quick Start
-
-Once your API is running, you can access:
-
-- **Interactive Documentation**: http://localhost:3000/api (Swagger UI)
-- **API Base URL**: http://localhost:3000/api/v1
-- **Health Check**: http://localhost:3000/api/v1/health/live
-
-### 📋 API Endpoints
-
-#### **Todos Management**
-
-##### Get All Todos
+### **Essential Commands:**
 ```bash
-GET /api/v1/todos
-```
-**Query Parameters:**
-- `page` (optional): Page number (default: 1)
-- `limit` (optional): Items per page (default: 10, max: 100)
-- `sortBy` (optional): Sort field (default: createdAt)
-- `sortOrder` (optional): asc or desc (default: desc)
-
-**Example:**
-```bash
-curl -X GET "http://localhost:3000/api/v1/todos?page=1&limit=5&sortBy=title&sortOrder=asc"
+npm run setup          # Setup development environment
+npm run start-mock     # Start mock environment (frontend devs)
+npm run dev            # Start full development environment
+npm run deploy         # Deploy to production
 ```
 
-##### Get Todos by Status
-```bash
-GET /api/v1/todos?completed=true
-GET /api/v1/todos?completed=false
-```
-
-##### Get Todos by Priority
-```bash
-GET /api/v1/todos?priority=high
-GET /api/v1/todos?priority=medium
-GET /api/v1/todos?priority=low
-```
-
-##### Get Todo Statistics
-```bash
-GET /api/v1/todos/stats
-```
-**Response:**
-```json
-{
-  "total": 5,
-  "completed": 1,
-  "pending": 4,
-  "byPriority": {
-    "high": 2,
-    "medium": 2,
-    "low": 1
-  }
-}
-```
-
-##### Get Specific Todo
-```bash
-GET /api/v1/todos/:id
-```
-**Example:**
-```bash
-curl -X GET "http://localhost:3000/api/v1/todos/68991bc7fa566c302974e39a"
-```
-
-##### Create New Todo
-```bash
-POST /api/v1/todos
-```
-**Request Body:**
-```json
-{
-  "title": "New Todo Item",
-  "description": "Optional description",
-  "priority": "high",
-  "dueDate": "2024-12-31T00:00:00.000Z"
-}
-```
-**Example:**
-```bash
-curl -X POST "http://localhost:3000/api/v1/todos" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "Learn NestJS",
-    "description": "Study NestJS framework",
-    "priority": "high",
-    "dueDate": "2024-12-31T00:00:00.000Z"
-  }'
-```
-
-##### Update Todo
-```bash
-PATCH /api/v1/todos/:id
-```
-**Request Body (partial):**
-```json
-{
-  "title": "Updated Title",
-  "completed": true
-}
-```
-
-##### Toggle Todo Completion
-```bash
-PATCH /api/v1/todos/:id/toggle
-```
-
-##### Delete Todo
-```bash
-DELETE /api/v1/todos/:id
-```
-
-#### **Health & Monitoring**
-
-##### Comprehensive Health Check
-```bash
-GET /api/v1/health
-```
-**Response:**
-```json
-{
-  "status": "ok",
-  "info": {
-    "database": {
-      "status": "up"
-    },
-    "storage": {
-      "status": "up"
-    },
-    "memory_heap": {
-      "status": "up"
-    },
-    "memory_rss": {
-      "status": "up"
-    }
-  }
-}
-```
-
-##### Liveness Probe
-```bash
-GET /api/v1/health/live
-```
-**Response:**
-```json
-{
-  "status": "alive",
-  "uptime": 123.456
-}
-```
-
-##### Readiness Probe
-```bash
-GET /api/v1/health/ready
-```
-**Response:**
-```json
-{
-  "status": "ready",
-  "timestamp": "2024-01-01T00:00:00.000Z"
-}
-```
-
-### 📊 Response Formats
-
-#### **Paginated Response**
-```json
-{
-  "data": [
-    {
-      "_id": "68991bc7fa566c302974e39a",
-      "title": "Complete project setup",
-      "description": "Set up the initial project structure",
-      "completed": false,
-      "priority": "high",
-      "dueDate": "2024-12-31T00:00:00.000Z",
-      "createdAt": "2025-08-10T22:23:03.856Z",
-      "updatedAt": "2025-08-10T22:23:03.856Z"
-    }
-  ],
-  "meta": {
-    "page": 1,
-    "limit": 10,
-    "total": 5,
-    "totalPages": 1,
-    "hasNext": false,
-    "hasPrev": false
-  }
-}
-```
-
-#### **Error Response**
-```json
-{
-  "statusCode": 404,
-  "timestamp": "2025-08-10T22:29:44.921Z",
-  "path": "/api/v1/todos/invalid-id",
-  "method": "GET",
-  "message": "Todo with ID invalid-id not found",
-  "error": "Not Found"
-}
-```
-
-### 🔧 Data Models
-
-#### **Todo Object**
-```json
-{
-  "id": "string",
-  "title": "string (required, max 200 chars)",
-  "description": "string (optional, max 1000 chars)",
-  "completed": "boolean (default: false)",
-  "priority": "enum (low | medium | high, default: medium)",
-  "dueDate": "Date (optional, ISO string)",
-  "createdAt": "Date",
-  "updatedAt": "Date"
-}
-```
-
-#### **Priority Levels**
-- `low` - Low priority tasks
-- `medium` - Medium priority tasks (default)
-- `high` - High priority tasks
-
-### 🛠️ Testing with cURL
-
-#### **Complete CRUD Example:**
-```bash
-# 1. Create a todo
-CREATE_RESPONSE=$(curl -s -X POST "http://localhost:3000/api/v1/todos" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "Test Todo",
-    "description": "This is a test todo",
-    "priority": "high"
-  }')
-
-# Extract the ID
-TODO_ID=$(echo $CREATE_RESPONSE | grep -o '"_id":"[^"]*"' | cut -d'"' -f4)
-
-# 2. Get the todo
-curl -X GET "http://localhost:3000/api/v1/todos/$TODO_ID"
-
-# 3. Update the todo
-curl -X PATCH "http://localhost:3000/api/v1/todos/$TODO_ID" \
-  -H "Content-Type: application/json" \
-  -d '{"completed": true}'
-
-# 4. Toggle completion
-curl -X PATCH "http://localhost:3000/api/v1/todos/$TODO_ID/toggle"
-
-# 5. Delete the todo
-curl -X DELETE "http://localhost:3000/api/v1/todos/$TODO_ID"
-```
-
-### 🌐 Interactive Documentation
-
-#### **Option 1: Live API Documentation (Backend Running)**
-Visit **http://localhost:3000/api** to access the interactive Swagger UI documentation where you can:
-
-- ✅ **Explore all endpoints**
-- ✅ **Test API calls directly**
-- ✅ **View request/response schemas**
-- ✅ **See authentication requirements**
-- ✅ **Download OpenAPI specification**
-
-#### **Option 2: Static Documentation (Frontend Developers)**
-For frontend developers who don't need to run the backend:
-
-```bash
-# Generate and serve static documentation
-npm run docs
-```
-
-Then visit **http://localhost:8080** to access the documentation.
-
-**Benefits:**
-- 🚀 **No backend required** - Documentation works independently
-- 📚 **Always up-to-date** - Generated from latest API code
-- 🔄 **Easy updates** - Run `npm run generate-docs` when API changes
-- 💻 **Frontend-friendly** - Perfect for frontend development workflow
-
-### 📝 Notes
-
-- **Base URL**: All endpoints are prefixed with `/api/v1`
-- **Content-Type**: Use `application/json` for POST/PATCH requests
-- **Pagination**: Default 10 items per page, maximum 100
-- **Validation**: All inputs are validated automatically
-- **Error Handling**: Consistent error response format
-- **Rate Limiting**: 100 requests per minute per IP
-
-### Todo Object Structure
-
-```json
-{
-  "id": "string",
-  "title": "string",
-  "description": "string (optional)",
-  "completed": "boolean",
-  "priority": "low | medium | high",
-  "dueDate": "Date (optional)",
-  "createdAt": "Date",
-  "updatedAt": "Date"
-}
-```
-
-## Environment Variables
-
-### Development Environment
-
-The project uses two environment files for development:
-
-#### Root `.env` (Docker Services)
-```env
-# MongoDB Configuration
-MONGO_ROOT_USERNAME=admin
-MONGO_ROOT_PASSWORD=dev_password_123
-MONGO_DATABASE=bidi_todo
-
-# Mongo Express Configuration
-MONGO_EXPRESS_USERNAME=admin
-MONGO_EXPRESS_PASSWORD=dev_password_123
-
-# API Configuration
-API_PORT=3000
-NODE_ENV=development
-```
-
-#### API `.env` (NestJS Application)
-```env
-# MongoDB Configuration
-MONGODB_URI=mongodb://admin:dev_password_123@localhost:27017/bidi_todo?authSource=admin
-MONGODB_DATABASE=bidi_todo
-
-# Application Configuration
-PORT=3000
-NODE_ENV=development
-
-# JWT Configuration
-JWT_SECRET=dev_jwt_secret_key_change_in_production
-JWT_EXPIRES_IN=24h
-
-# CORS Configuration
-CORS_ORIGIN=http://localhost:4200
-```
-
-### Production Environment
-
-For production, use the production environment template:
-```bash
-cp .env.production.example .env.production
-# Edit with your production values
-```
-
-## Database Access
-
-- **MongoDB**: mongodb://localhost:27017
+### **Key URLs:**
+- **API**: http://localhost:3000/api/v1
+- **Documentation**: http://localhost:8080
 - **Mongo Express**: http://localhost:8081
-  - Username: admin (or your custom username)
-  - Password: dev_password_123 (or your custom password)
+- **Health Check**: http://localhost:3000/api/v1/health
+
+### **File Locations:**
+- **API Code**: `bidi-api/src/`
+- **Frontend Code**: `bidi-client/src/`
+- **Docker Config**: `infrastructure/docker/`
+- **Documentation**: `docs/`
+- **Scripts**: `scripts/`
+- **Tools**: `tools/`

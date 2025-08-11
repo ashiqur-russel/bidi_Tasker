@@ -4,7 +4,7 @@ const path = require('path');
 const url = require('url');
 
 const PORT = process.env.DOCS_PORT || 8080;
-const DOCS_DIR = path.join(__dirname, 'api-docs');
+const DOCS_DIR = path.join(__dirname, '../../docs/api/api-docs');
 
 // MIME types
 const mimeTypes = {

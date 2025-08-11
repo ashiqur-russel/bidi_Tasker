@@ -103,24 +103,40 @@ This will:
 For frontend developers who need API documentation without running the backend:
 
 ```bash
-# Generate and serve API documentation
-npm run docs
+# 🚀 ONE COMMAND - Generate and view API documentation
+npm run view-api
+
+# 🎯 ULTRA SIMPLE - Just run this file
+./api
 ```
 
 This will:
-- Generate static Swagger documentation from the API
-- Start a documentation server on http://localhost:8080
-- Allow you to explore and test API endpoints
-- API calls will be made to http://localhost:3000 (when backend is running)
+- ✅ Generate static Swagger documentation from the API
+- ✅ Start a documentation server on http://localhost:8080
+- ✅ Automatically open your browser to the documentation
+- ✅ Allow you to explore and test API endpoints
+- ✅ API calls will be made to http://localhost:3000 (when backend is running)
 
 **Alternative commands:**
 ```bash
+# Generate and serve documentation
+npm run docs
+
 # Generate docs only
 npm run generate-docs
 
 # Serve existing docs only
 npm run serve-docs
+
+# Update docs when API changes
+npm run update-docs
 ```
+
+**🎯 For Frontend Developers - Choose Your Style:**
+
+1. **Ultra Simple**: `./api` - Just run this file
+2. **NPM Script**: `npm run view-api` - Standard npm command
+3. **Manual Control**: `npm run docs` - More control over the process
 
 ### **4. Start Development Servers**
 ```bash

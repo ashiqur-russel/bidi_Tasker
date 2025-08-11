@@ -4,21 +4,28 @@ This guide explains how to use the API documentation without running the backend
 
 ## 🚀 Quick Start
 
-### Generate and View Documentation
+### **ONE COMMAND - Generate and View Documentation**
 
 ```bash
-# Generate and serve documentation
-npm run docs
+# 🚀 Generate, serve, and open API documentation
+npm run view-api
+
+# 🎯 ULTRA SIMPLE - Just run this file
+./api
 ```
 
 This will:
-1. Build the API
-2. Generate static Swagger documentation
-3. Start a documentation server on http://localhost:8080
+1. ✅ Build the API
+2. ✅ Generate static Swagger documentation
+3. ✅ Start a documentation server on http://localhost:8080
+4. ✅ Automatically open your browser to the documentation
 
 ### Alternative Commands
 
 ```bash
+# Generate and serve documentation
+npm run docs
+
 # Generate documentation only
 npm run generate-docs
 

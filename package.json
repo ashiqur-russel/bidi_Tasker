@@ -32,7 +32,8 @@
     "generate-docs": "cd bidi-api && npm run build && node scripts/generate-swagger.js",
     "serve-docs": "node serve-docs.js",
     "docs": "npm run generate-docs && npm run serve-docs",
-    "update-docs": "./update-docs.sh"
+    "update-docs": "./update-docs.sh",
+    "view-api": "./view-api.sh"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

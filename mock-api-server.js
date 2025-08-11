@@ -77,6 +77,19 @@ const mockDatabase = {
       updatedAt: '2024-01-01T09:00:00.000Z'
     }
   ]
+  // 🆕 ADD NEW COLLECTIONS HERE WHEN BACKEND ADDS NEW DTOs
+  // Example:
+  // projects: [
+  //   {
+  //     _id: '507f1f77bcf86cd799439031',
+  //     name: 'Tasker App',
+  //     description: 'Full-stack task management application',
+  //     status: 'active',
+  //     createdAt: '2024-01-01T10:00:00.000Z',
+  //     updatedAt: '2024-01-01T10:00:00.000Z'
+  //   }
+  // ]
+};
 };
 
 // Helper functions
@@ -101,20 +114,20 @@ function parseQueryParams(queryString) {
 function paginateData(data, page = 1, limit = 10, sortBy = 'createdAt', sortOrder = 'desc') {
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
-  
+
   // Sort data
   const sortedData = [...data].sort((a, b) => {
     const aVal = a[sortBy];
     const bVal = b[sortBy];
-    
+
     if (sortOrder === 'desc') {
       return new Date(bVal) - new Date(aVal);
     }
     return new Date(aVal) - new Date(bVal);
   });
-  
+
   const paginatedData = sortedData.slice(startIndex, endIndex);
-  
+
   return {
     data: paginatedData,
     pagination: {
@@ -130,7 +143,7 @@ function paginateData(data, page = 1, limit = 10, sortBy = 'createdAt', sortOrde
 
 function filterTodos(todos, status, priority) {
   let filtered = [...todos];
-  
+
   if (status) {
     filtered = filtered.filter(todo => {
       if (status === 'completed') return todo.completed === true;
@@ -138,11 +151,11 @@ function filterTodos(todos, status, priority) {
       return true;
     });
   }
-  
+
   if (priority) {
     filtered = filtered.filter(todo => todo.priority === priority);
   }
-  
+
   return filtered;
 }
 
@@ -161,45 +174,45 @@ const routes = {
       }
     }));
   },
-  
+
   'GET:/api/v1/health/live': (req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ status: 'ok' }));
   },
-  
+
   'GET:/api/v1/health/ready': (req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ status: 'ok' }));
   },
-  
+
   // Root endpoint
   'GET:/api/v1': (req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ 
+    res.end(JSON.stringify({
       message: 'Bidi Todo API - Mock Server',
       version: '1.0.0',
       status: 'running'
     }));
   },
-  
+
   // Todo endpoints
   'GET:/api/v1/todos': (req, res) => {
     const { query } = url.parse(req.url, true);
     const { page = 1, limit = 10, sortBy = 'createdAt', sortOrder = 'desc', status, priority } = query;
-    
+
     let todos = filterTodos(mockDatabase.todos, status, priority);
     const result = paginateData(todos, page, limit, sortBy, sortOrder);
-    
+
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(result));
   },
-  
+
   'POST:/api/v1/todos': (req, res) => {
     let body = '';
     req.on('data', chunk => {
       body += chunk.toString();
     });
-    
+
     req.on('end', () => {
       try {
         const todoData = JSON.parse(body);
@@ -213,9 +226,9 @@ const routes = {
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString()
         };
-        
+
         mockDatabase.todos.push(newTodo);
-        
+
         res.writeHead(201, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(newTodo));
       } catch (error) {
@@ -224,7 +237,7 @@ const routes = {
       }
     });
   },
-  
+
   'GET:/api/v1/todos/stats': (req, res) => {
     const todos = mockDatabase.todos;
     const stats = {
@@ -238,40 +251,40 @@ const routes = {
       },
       completionRate: Math.round((todos.filter(t => t.completed).length / todos.length) * 100)
     };
-    
+
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(stats));
   },
-  
+
   'GET:/api/v1/todos/:id': (req, res) => {
     const id = req.params.id;
     const todo = mockDatabase.todos.find(t => t._id === id);
-    
+
     if (!todo) {
       res.writeHead(404, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'Todo not found' }));
       return;
     }
-    
+
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(todo));
   },
-  
+
   'PATCH:/api/v1/todos/:id': (req, res) => {
     const id = req.params.id;
     const todoIndex = mockDatabase.todos.findIndex(t => t._id === id);
-    
+
     if (todoIndex === -1) {
       res.writeHead(404, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'Todo not found' }));
       return;
     }
-    
+
     let body = '';
     req.on('data', chunk => {
       body += chunk.toString();
     });
-    
+
     req.on('end', () => {
       try {
         const updates = JSON.parse(body);
@@ -280,9 +293,9 @@ const routes = {
           ...updates,
           updatedAt: new Date().toISOString()
         };
-        
+
         mockDatabase.todos[todoIndex] = updatedTodo;
-        
+
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(updatedTodo));
       } catch (error) {
@@ -291,45 +304,45 @@ const routes = {
       }
     });
   },
-  
+
   'PATCH:/api/v1/todos/:id/toggle': (req, res) => {
     const id = req.params.id;
     const todoIndex = mockDatabase.todos.findIndex(t => t._id === id);
-    
+
     if (todoIndex === -1) {
       res.writeHead(404, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'Todo not found' }));
       return;
     }
-    
+
     const updatedTodo = {
       ...mockDatabase.todos[todoIndex],
       completed: !mockDatabase.todos[todoIndex].completed,
       updatedAt: new Date().toISOString()
     };
-    
+
     mockDatabase.todos[todoIndex] = updatedTodo;
-    
+
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(updatedTodo));
   },
-  
+
   'DELETE:/api/v1/todos/:id': (req, res) => {
     const id = req.params.id;
     const todoIndex = mockDatabase.todos.findIndex(t => t._id === id);
-    
+
     if (todoIndex === -1) {
       res.writeHead(404, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'Todo not found' }));
       return;
     }
-    
+
     const deletedTodo = mockDatabase.todos.splice(todoIndex, 1)[0];
-    
+
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ 
+    res.end(JSON.stringify({
       message: 'Todo deleted successfully',
-      deletedTodo 
+      deletedTodo
     }));
   }
 };
@@ -341,23 +354,23 @@ const server = http.createServer((req, res) => {
   const parsedUrl = url.parse(req.url, true);
   const method = req.method;
   const pathname = parsedUrl.pathname;
-  
+
   // Add CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  
+
   // Handle preflight requests
   if (method === 'OPTIONS') {
     res.writeHead(200);
     res.end();
     return;
   }
-  
+
   // Extract route parameters
   let routeKey = `${method}:${pathname}`;
   let params = {};
-  
+
   // Handle dynamic routes with parameters
   if (pathname.startsWith('/api/v1/todos/') && pathname !== '/api/v1/todos/stats') {
     const id = pathname.split('/').pop();
@@ -366,14 +379,14 @@ const server = http.createServer((req, res) => {
       routeKey = `${method}:/api/v1/todos/:id`;
     }
   }
-  
+
   // Add params to request object
   req.params = params;
   req.query = parsedUrl.query;
-  
+
   // Find and execute route handler
   const handler = routes[routeKey];
-  
+
   if (handler) {
     try {
       handler(req, res);
@@ -408,6 +421,10 @@ server.listen(PORT, () => {
   console.log(`   - Supports pagination, filtering, and sorting`);
   console.log(`   - Data persists during server session`);
   console.log(`   - Press Ctrl+C to stop the server`);
+  console.log(`\n🆕 To add new endpoints:`);
+  console.log(`   1. Add mock data to mockDatabase object above`);
+  console.log(`   2. Add route handlers to routes object below`);
+  console.log(`   3. Update this console.log section`);
 });
 
 // Graceful shutdown

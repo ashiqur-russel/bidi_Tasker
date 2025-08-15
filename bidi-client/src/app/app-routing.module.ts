@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { KitchenSinkComponent } from './kitchen-sink/kitchen-sink.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
+  },
+  {
+    path: 'kitchen-sink',
+    component: KitchenSinkComponent
   },
   {
     path: '**',

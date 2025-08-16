@@ -11,8 +11,15 @@ import { CommonModule } from '@angular/common';
       <nav class="flex items-center justify-between p-8 lg:px-12" aria-label="Global">
         <div class="flex lg:flex-1">
           <a href="#" class="-m-1.5 p-1.5">
-            <span class="sr-only">Your Company</span>
-            <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="" class="h-8 w-auto" />
+            <span class="sr-only">Tasker</span>
+            <div class="flex items-center">
+              <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                </svg>
+              </div>
+              <span class="ml-2 text-xl font-bold text-white">Tasker</span>
+            </div>
           </a>
         </div>
         
@@ -26,15 +33,15 @@ import { CommonModule } from '@angular/common';
         </div>
         
         <div class="hidden lg:flex lg:gap-x-8">
-          <a href="#" class="text-sm font-semibold leading-6 text-white">Product</a>
-          <a href="#" class="text-sm font-semibold leading-6 text-white">Features</a>
-          <a href="#" class="text-sm font-semibold leading-6 text-white">Marketplace</a>
-          <a href="#" class="text-sm font-semibold leading-6 text-white">Company</a>
+          <a href="#" class="text-sm font-semibold leading-6 text-white">Tasks</a>
+          <a href="#" class="text-sm font-semibold leading-6 text-white">Projects</a>
+          <a href="#" class="text-sm font-semibold leading-6 text-white">Analytics</a>
+          <a href="#" class="text-sm font-semibold leading-6 text-white">Pricing</a>
         </div>
         
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
           <button (click)="goToDashboard()" class="text-sm font-semibold leading-6 text-white">
-            Log in <span aria-hidden="true">&rarr;</span>
+            Get Started <span aria-hidden="true">&rarr;</span>
           </button>
         </div>
       </nav>
@@ -45,8 +52,15 @@ import { CommonModule } from '@angular/common';
         <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
           <div class="flex items-center justify-between">
             <a href="#" class="-m-1.5 p-1.5">
-              <span class="sr-only">Your Company</span>
-              <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="" class="h-8 w-auto" />
+              <span class="sr-only">Tasker</span>
+              <div class="flex items-center">
+                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                  </svg>
+                </div>
+                <span class="ml-2 text-xl font-bold text-white">Tasker</span>
+              </div>
             </a>
             <button type="button" (click)="toggleMobileMenu()" class="-m-2.5 rounded-md p-2.5 text-gray-200">
               <span class="sr-only">Close menu</span>
@@ -58,13 +72,13 @@ import { CommonModule } from '@angular/common';
           <div class="mt-6 flow-root">
             <div class="-my-6 divide-y divide-white/10">
               <div class="space-y-2 py-6">
-                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Product</a>
-                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Features</a>
-                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Marketplace</a>
-                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Company</a>
+                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Tasks</a>
+                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Projects</a>
+                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Analytics</a>
+                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-white/5">Pricing</a>
               </div>
               <div class="py-6">
-                <button (click)="goToDashboard()" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-white/5">Log in</button>
+                <button (click)="goToDashboard()" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-white/5">Get Started</button>
               </div>
             </div>
           </div>

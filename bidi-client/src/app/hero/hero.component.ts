@@ -18,7 +18,6 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
         </div>
 
         <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-
           <!-- Main content -->
           <div class="text-center">
             <h1 class="text-display-lg text-white">Organize tasks, boost productivity</h1>

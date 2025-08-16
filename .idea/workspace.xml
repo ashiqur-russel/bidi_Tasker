@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5e2ed1cd-90c3-4caa-9a3e-9500b852a077" name="Changes" comment="fix: fix import module issue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mock-api-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/mock-api-server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,13 +43,13 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/frontend__swagger__api&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/shared-types-dtos&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/ashiqur/Desktop/Projects/tasker/bidi-api/node_modules/typescript/lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/ashiqur/Desktop/Projects/tasker/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -70,6 +69,8 @@
       <updated>1754860021457</updated>
       <workItem from="1754860022458" duration="9114000" />
       <workItem from="1754872676524" duration="1313000" />
+      <workItem from="1754913615858" duration="950000" />
+      <workItem from="1755036177889" duration="6041000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />

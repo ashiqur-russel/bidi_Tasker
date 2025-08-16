@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ApiService, Todo, CreateTodoDto } from '../services/api.service';
+import { ButtonComponent } from '../shared/components/button';
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss'],
-  standalone: false
+  standalone: true,
+  imports: [CommonModule, FormsModule, ButtonComponent]
 })
 export class TasksComponent implements OnInit {
   tasks: Todo[] = [];
@@ -104,10 +108,10 @@ export class TasksComponent implements OnInit {
 
   getPriorityColor(priority: string): string {
     switch (priority) {
-      case 'high': return 'error';
-      case 'medium': return 'warning';
+      case 'high': return 'warning';
+      case 'medium': return 'secondary';
       case 'low': return 'success';
-      default: return 'info';
+      default: return 'secondary';
     }
   }
 
@@ -115,13 +119,13 @@ export class TasksComponent implements OnInit {
     return priority.charAt(0).toUpperCase() + priority.slice(1);
   }
 
-  formatDate(date: Date | string): string {
+  formatDate(date: Date | string | undefined): string {
     if (!date) return '';
     return new Date(date).toLocaleDateString();
   }
 
   createNewTask(): void {
-    // TODO: Implement task creation modal
-    console.log('Creating new task...');
+    console.log('Creating new task');
+    // TODO: Implement task creation logic
   }
 }

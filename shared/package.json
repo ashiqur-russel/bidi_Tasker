@@ -1,5 +1,5 @@
 {
-  "name": "@tasker/shared",
+  "name": "@ashiqur-russel/tasker-shared",
   "version": "1.0.0",
   "description": "Shared types, DTOs, and interfaces for Tasker application",
   "main": "dist/index.js",
@@ -8,17 +8,32 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "clean": "rm -rf dist",
-    "prebuild": "npm run clean"
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
+    "typescript",
     "types",
     "dto",
     "interfaces",
     "shared",
-    "tasker"
+    "tasker",
+    "nestjs",
+    "angular",
+    "validation",
+    "swagger"
   ],
-  "author": "Tasker Team",
+  "author": "Ashiqur Russel <ashiqurrussel2@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashiqur-russel/bidi_Tasker.git",
+    "directory": "shared"
+  },
+  "homepage": "https://github.com/ashiqur-russel/bidi_Tasker#readme",
+  "bugs": {
+    "url": "https://github.com/ashiqur-russel/bidi_Tasker/issues"
+  },
   "devDependencies": {
     "typescript": "^5.0.0"
   },

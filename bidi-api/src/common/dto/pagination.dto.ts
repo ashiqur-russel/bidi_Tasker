@@ -1,2 +1,2 @@
 // Re-export from shared package
-export { PaginationDto } from '@tasker/shared';
+export { PaginationDto } from '@ashiqur-russel/tasker-shared';

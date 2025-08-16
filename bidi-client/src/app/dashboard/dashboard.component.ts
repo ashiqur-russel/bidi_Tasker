@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ApiService, TodoStats, Todo } from '../services/api.service';
+import { ButtonComponent } from '../shared/components/button';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  standalone: false
+  standalone: true,
+  imports: [CommonModule, FormsModule, ButtonComponent]
 })
 export class DashboardComponent implements OnInit {
   stats: TodoStats = {
@@ -97,5 +101,15 @@ export class DashboardComponent implements OnInit {
         this.error = 'Failed to update task';
       }
     });
+  }
+
+  createNewTask(): void {
+    console.log('Creating new task');
+    // TODO: Implement task creation logic
+  }
+
+  createNewProject(): void {
+    console.log('Creating new project');
+    // TODO: Implement project creation logic
   }
 }

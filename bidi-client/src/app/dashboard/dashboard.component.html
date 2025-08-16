@@ -1,191 +1,215 @@
-<div class="dashboard">
-    <!-- Dashboard Header -->
-    <div class="dashboard-header">
-        <div class="dashboard-title">
-            <h1>Dashboard</h1>
-            <p>Welcome back! Here's what's happening with your tasks.</p>
-        </div>
-        <button class="btn btn-primary" routerLink="/tasks">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-            New Task
-        </button>
-    </div>
-
-    <!-- Error Message -->
-    <div class="error-message" *ngIf="error">
-        <div class="alert alert-error">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="15" y1="9" x2="9" y2="15"></line>
-                <line x1="9" y1="9" x2="15" y2="15"></line>
-            </svg>
-            <span>{{ error }}</span>
-            <button class="btn btn-text btn-sm" (click)="loadDashboardData()">Retry</button>
-        </div>
-    </div>
-
-    <!-- Loading State -->
-    <div class="loading-state" *ngIf="loading">
-        <div class="loading-spinner">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 12a9 9 0 11-6.219-8.56"></path>
-            </svg>
-            <p>Loading dashboard...</p>
-        </div>
-    </div>
-
-    <!-- Dashboard Content -->
-    <div class="dashboard-content" *ngIf="!loading">
-        <!-- Statistics Grid -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon stat-primary">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 11l3 3L22 4"></path>
-                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                    </svg>
-                </div>
-                <div class="stat-content">
-                    <h3 class="stat-number">{{ stats.total }}</h3>
-                    <p class="stat-label">Total Tasks</p>
-                </div>
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 p-8">
+    <div class="space-y-6">
+        <!-- Dashboard Header -->
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-display-md text-gray-900 dark:text-white">Dashboard</h1>
+                <p class="mt-2 text-body-md text-gray-700 dark:text-gray-200">Welcome back! Here's what's happening with
+                    your tasks.</p>
             </div>
+            <button class="btn btn-primary" routerLink="/tasks">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                New Task
+            </button>
+        </div>
 
-            <div class="stat-card">
-                <div class="stat-icon stat-success">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                        <polyline points="22,4 12,14.01 9,11.01"></polyline>
-                    </svg>
-                </div>
-                <div class="stat-content">
-                    <h3 class="stat-number">{{ stats.completed }}</h3>
-                    <p class="stat-label">Completed</p>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-icon stat-warning">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12,6 12,12 16,14"></polyline>
-                    </svg>
-                </div>
-                <div class="stat-content">
-                    <h3 class="stat-number">{{ stats.pending }}</h3>
-                    <p class="stat-label">In Progress</p>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-icon stat-error">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="8" x2="12" y2="12"></line>
-                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                    </svg>
-                </div>
-                <div class="stat-content">
-                    <h3 class="stat-number">{{ stats.byPriority.high }}</h3>
-                    <p class="stat-label">High Priority</p>
-                </div>
+        <!-- Error Message -->
+        <div *ngIf="error" class="mb-8">
+            <div class="alert alert-error">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                </svg>
+                <span>{{ error }}</span>
+                <button class="btn btn-sm" (click)="loadDashboardData()">Retry</button>
             </div>
         </div>
 
-        <!-- Main Content Grid -->
-        <div class="dashboard-grid">
-            <!-- Recent Tasks -->
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h2>Recent Tasks</h2>
-                    <a routerLink="/tasks" class="btn btn-text btn-sm">View All</a>
-                </div>
-                <div class="card-content">
-                    <div class="task-list" *ngIf="recentTasks.length > 0">
-                        <div class="task-item" *ngFor="let task of recentTasks">
-                            <div class="task-checkbox">
-                                <input type="checkbox" [checked]="task.completed" (change)="toggleTaskComplete(task)"
-                                    [id]="'task-' + task._id">
-                                <label [for]="'task-' + task._id"></label>
+        <!-- Loading State -->
+        <div *ngIf="loading" class="flex justify-center items-center min-h-96">
+            <div class="text-center">
+                <svg class="animate-spin h-8 w-8 text-indigo-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+                    <path d="M21 12a9 9 0 11-6.219-8.56"></path>
+                </svg>
+                <p class="text-body-md text-gray-700 dark:text-gray-200">Loading dashboard...</p>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div *ngIf="!loading">
+            <!-- Statistics Grid -->
+            <div class="grid-auto-fit mb-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex items-center gap-4">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-500">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" class="text-white">
+                                    <path d="M9 11l3 3L22 4"></path>
+                                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                                </svg>
                             </div>
-                            <div class="task-content">
-                                <h4 class="task-title" [class.completed]="task.completed">
-                                    {{ task.title }}
-                                </h4>
-                                <p class="task-description" *ngIf="task.description">
-                                    {{ task.description }}
+                            <div>
+                                <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ stats.total }}</p>
+                                <p class="text-caption text-gray-600 dark:text-gray-300">Total Tasks</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex items-center gap-4">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-500">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" class="text-white">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ stats.completed }}</p>
+                                <p class="text-caption text-gray-600 dark:text-gray-300">Completed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex items-center gap-4">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-yellow-500">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" class="text-white">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12,6 12,12 16,14"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ stats.pending }}</p>
+                                <p class="text-caption text-gray-600 dark:text-gray-300">In Progress</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="flex items-center gap-4">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-red-500">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" class="text-white">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ stats.byPriority.high }}
                                 </p>
-                                <div class="task-meta">
-                                    <span class="badge badge-{{ getPriorityColor(task.priority) }}">
-                                        {{ getPriorityLabel(task.priority) }}
-                                    </span>
-                                    <span class="task-date" *ngIf="task.dueDate">
-                                        Due: {{ formatDate(task.dueDate) }}
-                                    </span>
-                                </div>
+                                <p class="text-caption text-gray-600 dark:text-gray-300">High Priority</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="empty-state" *ngIf="recentTasks.length === 0">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1">
-                            <path d="M9 11l3 3L22 4"></path>
-                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                        </svg>
-                        <h3>No tasks yet</h3>
-                        <p>Create your first task to get started</p>
-                        <button class="btn btn-primary" routerLink="/tasks">Create Task</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Project Overview -->
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <h2>Project Overview</h2>
-                    <a routerLink="/projects" class="btn btn-text btn-sm">View All</a>
+            <!-- Main Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Recent Tasks -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-heading-lg text-gray-900 dark:text-white">Recent Tasks</h2>
+                        <a routerLink="/tasks" class="btn btn-ghost btn-sm">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="recentTasks.length > 0" class="space-y-4">
+                            <div *ngFor="let task of recentTasks"
+                                class="flex items-start gap-3 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                                <input type="checkbox" [checked]="task.completed" (change)="toggleTaskComplete(task)"
+                                    [id]="'task-' + task._id"
+                                    class="mt-1 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-700">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="text-heading-sm text-gray-900 dark:text-white"
+                                        [class.line-through]="task.completed" [class.text-gray-500]="task.completed">
+                                        {{ task.title }}
+                                    </h4>
+                                    <p *ngIf="task.description"
+                                        class="mt-1 text-body-sm text-gray-700 dark:text-gray-200">
+                                        {{ task.description }}
+                                    </p>
+                                    <div class="mt-2 flex items-center gap-2">
+                                        <span class="badge badge-{{ getPriorityColor(task.priority) }}">
+                                            {{ getPriorityLabel(task.priority) }}
+                                        </span>
+                                        <span *ngIf="task.dueDate"
+                                            class="text-caption text-gray-600 dark:text-gray-300">
+                                            Due: {{ formatDate(task.dueDate) }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="recentTasks.length === 0" class="text-center py-12">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1" class="mx-auto mb-4 text-gray-400">
+                                <path d="M9 11l3 3L22 4"></path>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                            </svg>
+                            <h3 class="text-heading-md text-gray-900 dark:text-white mb-2">No tasks yet</h3>
+                            <p class="text-body-sm text-gray-700 dark:text-gray-200 mb-4">Create your first task to get
+                                started</p>
+                            <button class="btn btn-primary" routerLink="/tasks">Create Task</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <div class="project-list">
-                        <div class="project-item">
-                            <div class="project-info">
-                                <h4>Website Redesign</h4>
-                                <p>Modernizing the company website</p>
-                            </div>
-                            <div class="project-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 75%"></div>
-                                </div>
-                                <span class="progress-text">75%</span>
-                            </div>
-                        </div>
 
-                        <div class="project-item">
-                            <div class="project-info">
-                                <h4>Mobile App Development</h4>
-                                <p>Building the iOS and Android apps</p>
-                            </div>
-                            <div class="project-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 45%"></div>
+                <!-- Project Overview -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-heading-lg text-gray-900 dark:text-white">Project Overview</h2>
+                        <a routerLink="/projects" class="btn btn-ghost btn-sm">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="space-y-6">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="text-heading-sm text-gray-900 dark:text-white">Website Redesign</h4>
+                                    <span class="text-caption text-gray-600 dark:text-gray-300">75%</span>
                                 </div>
-                                <span class="progress-text">45%</span>
+                                <p class="text-body-sm text-gray-700 dark:text-gray-200">Modernizing the company website
+                                </p>
+                                <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 75%"></div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="project-item">
-                            <div class="project-info">
-                                <h4>Marketing Campaign</h4>
-                                <p>Q4 marketing initiatives</p>
-                            </div>
-                            <div class="project-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 90%"></div>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="text-heading-sm text-gray-900 dark:text-white">Mobile App Development
+                                    </h4>
+                                    <span class="text-caption text-gray-600 dark:text-gray-300">45%</span>
                                 </div>
-                                <span class="progress-text">90%</span>
+                                <p class="text-body-sm text-gray-700 dark:text-gray-200">Building the iOS and Android
+                                    apps</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="text-heading-sm text-gray-900 dark:text-white">Marketing Campaign</h4>
+                                    <span class="text-caption text-gray-600 dark:text-gray-300">90%</span>
+                                </div>
+                                <p class="text-body-sm text-gray-700 dark:text-gray-200">Q4 marketing initiatives</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>

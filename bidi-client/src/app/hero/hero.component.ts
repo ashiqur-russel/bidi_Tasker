@@ -63,7 +63,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       position: relative;
       isolation: isolate;
       padding: 0 1rem;
-      padding-top: 4rem;
+      padding-top: 5rem;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -73,14 +73,14 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     @media (min-width: 640px) {
       .hero-content {
         padding: 0 1.5rem;
-        padding-top: 5rem;
+        padding-top: 6rem;
       }
     }
 
     @media (min-width: 1024px) {
       .hero-content {
         padding: 0 2rem;
-        padding-top: 6rem;
+        padding-top: 7rem;
       }
     }
 

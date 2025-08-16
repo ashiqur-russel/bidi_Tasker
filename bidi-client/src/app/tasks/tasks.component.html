@@ -1,117 +1,136 @@
-<!-- Tasks Header -->
-<div class="tasks-header">
-    <div class="tasks-title">
-        <h1>Tasks</h1>
-        <p class="text-secondary">Manage and organize your tasks efficiently</p>
-    </div>
-    <div class="tasks-actions">
-        <button class="btn btn-primary" (click)="createNewTask()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 p-8">
+    <div class="space-y-8">
+        <!-- Page Header -->
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-display-md text-white">Tasks</h1>
+                <p class="text-body-md text-gray-300 mt-2">Manage and organize your tasks efficiently</p>
+            </div>
+            <button class="btn btn-primary" (click)="createNewTask()">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                New Task
+            </button>
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="error" class="alert alert-error">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            New Task
-        </button>
-    </div>
-</div>
-
-<!-- Error Message -->
-<div class="error-message" *ngIf="error">
-    <div class="alert alert-error">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="15" y1="9" x2="9" y2="15"></line>
-            <line x1="9" y1="9" x2="15" y2="15"></line>
-        </svg>
-        <span>{{ error }}</span>
-        <button class="btn btn-text btn-sm" (click)="loadTasks()">Retry</button>
-    </div>
-</div>
-
-<!-- Loading State -->
-<div class="loading-state" *ngIf="loading">
-    <div class="loading-spinner">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12a9 9 0 11-6.219-8.56"></path>
-        </svg>
-        <p>Loading tasks...</p>
-    </div>
-</div>
-
-<!-- Tasks Content -->
-<div class="tasks-content" *ngIf="!loading">
-    <div class="tasks-filters">
-        <div class="filter-group">
-            <label class="form-label">Filter by Status</label>
-            <select class="form-input" (change)="onStatusFilterChange($event)">
-                <option value="">All Tasks</option>
-                <option value="todo">To Do</option>
-                <option value="completed">Completed</option>
-            </select>
+            <span>{{ error }}</span>
+            <button class="btn btn-sm" (click)="loadTasks()">Retry</button>
         </div>
-        <div class="filter-group">
-            <label class="form-label">Filter by Priority</label>
-            <select class="form-input" (change)="onPriorityFilterChange($event)">
-                <option value="">All Priorities</option>
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label class="form-label">Search</label>
-            <input type="text" class="form-input" placeholder="Search tasks..." (input)="onSearchChange($event)">
-        </div>
-    </div>
 
-    <div class="tasks-list" *ngIf="filteredTasks.length > 0">
-        <div class="task-card" *ngFor="let task of filteredTasks" [class.completed]="task.completed">
-            <div class="task-header">
-                <div class="task-checkbox">
-                    <input type="checkbox" [id]="'task-' + task._id" [checked]="task.completed"
-                        (change)="toggleTaskComplete(task)">
-                    <label [for]="'task-' + task._id"></label>
-                </div>
-                <div class="task-title">
-                    <h3>{{ task.title }}</h3>
-                    <span class="badge badge-{{ getPriorityColor(task.priority) }}">
-                        {{ getPriorityLabel(task.priority) }} Priority
-                    </span>
-                </div>
-                <div class="task-actions">
-                    <button class="btn btn-secondary btn-sm">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <circle cx="12" cy="12" r="1"></circle>
-                            <circle cx="19" cy="12" r="1"></circle>
-                            <circle cx="5" cy="12" r="1"></circle>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="task-body" *ngIf="task.description">
-                <p>{{ task.description }}</p>
-                <div class="task-meta">
-                    <span class="task-due" *ngIf="task.dueDate">
-                        Due: {{ formatDate(task.dueDate) }}
-                    </span>
-                    <span class="task-status">
-                        {{ task.completed ? 'Completed' : 'In Progress' }}
-                    </span>
-                </div>
+        <!-- Loading State -->
+        <div *ngIf="loading" class="flex justify-center items-center min-h-96">
+            <div class="text-center">
+                <svg class="animate-spin h-8 w-8 text-indigo-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+                    <path d="M21 12a9 9 0 11-6.219-8.56"></path>
+                </svg>
+                <p class="text-body-md text-gray-700 dark:text-gray-200">Loading tasks...</p>
             </div>
         </div>
-    </div>
 
-    <!-- Empty State -->
-    <div class="empty-state" *ngIf="!loading && filteredTasks.length === 0">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M9 11l3 3L22 4"></path>
-            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-        </svg>
-        <h3>No tasks found</h3>
-        <p *ngIf="tasks.length === 0">Create your first task to get started</p>
-        <p *ngIf="tasks.length > 0">No tasks match your current filters</p>
-        <button class="btn btn-primary" (click)="createNewTask()" *ngIf="tasks.length === 0">Create Task</button>
+        <!-- Tasks Content -->
+        <div *ngIf="!loading" class="space-y-6">
+            <!-- Filters -->
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <select class="input text-sm w-32" (change)="onStatusFilterChange($event)">
+                        <option value="">All Status</option>
+                        <option value="todo">To Do</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    <select class="input text-sm w-36" (change)="onPriorityFilterChange($event)">
+                        <option value="">All Priority</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                    <input type="text" class="input text-sm w-48" placeholder="Search tasks..."
+                        (input)="onSearchChange($event)">
+                </div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">
+                    {{ filteredTasks.length }} of {{ tasks.length }} tasks
+                </div>
+            </div>
+
+            <!-- Tasks Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" *ngIf="filteredTasks.length > 0">
+                <div class="card hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
+                    *ngFor="let task of filteredTasks" [class.opacity-75]="task.completed">
+                    <div class="card-body p-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <input type="checkbox" [id]="'task-' + task._id" [checked]="task.completed"
+                                    (change)="toggleTaskComplete(task)"
+                                    class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <span class="badge badge-{{ getPriorityColor(task.priority) }}">
+                                    {{ getPriorityLabel(task.priority) }} Priority
+                                </span>
+                            </div>
+                            <div class="relative">
+                                <select
+                                    class="text-xs bg-gray-100 dark:bg-gray-700 border-0 rounded px-2 py-1 text-gray-700 dark:text-gray-200 focus:ring-1 focus:ring-indigo-500">
+                                    <option [selected]="!task.completed">In Progress</option>
+                                    <option [selected]="task.completed">Completed</option>
+                                    <option>Pending</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <h3 class="text-heading-md text-gray-900 dark:text-white mb-2"
+                            [class.line-through]="task.completed" [class.text-gray-500]="task.completed">
+                            {{ task.title }}
+                        </h3>
+
+                        <p class="text-body-sm text-gray-600 dark:text-gray-300 mb-4" *ngIf="task.description">
+                            {{ task.description }}
+                        </p>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                                <span class="text-caption text-gray-500 dark:text-gray-400" *ngIf="task.dueDate">
+                                    Due: {{ formatDate(task.dueDate) }}
+                                </span>
+                            </div>
+                            <div class="w-16 h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                <div class="h-2 rounded-full"
+                                    [class]="task.completed ? 'w-full bg-green-600' : 'w-1/2 bg-yellow-600'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div *ngIf="!loading && filteredTasks.length === 0" class="text-center py-12">
+                <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
+                    </path>
+                </svg>
+                <h3 class="text-heading-md text-gray-900 dark:text-white mb-2">
+                    {{ tasks.length === 0 ? 'No tasks yet' : 'No tasks found' }}
+                </h3>
+                <p class="text-body-sm text-gray-700 dark:text-gray-200 mb-4">
+                    {{ tasks.length === 0 ? 'Create your first task to get started' : 'No tasks match your current
+                    filters' }}
+                </p>
+                <button class="btn btn-primary" (click)="createNewTask()" *ngIf="tasks.length === 0">
+                    Create Task
+                </button>
+            </div>
+        </div>
     </div>
 </div>

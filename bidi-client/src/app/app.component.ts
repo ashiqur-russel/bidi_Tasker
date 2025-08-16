@@ -3,14 +3,14 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { NavbarComponent } from './shared/navbar/navbar.component';
+import { ButtonComponent } from './shared/components/button';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule]
+  imports: [CommonModule, RouterModule, FormsModule, ButtonComponent]
 })
 export class AppComponent {
   sidebarOpen = false;
@@ -27,5 +27,10 @@ export class AppComponent {
 
   closeSidebar(): void {
     this.sidebarOpen = false;
+  }
+
+  quickAdd(): void {
+    console.log('Quick add clicked');
+    // TODO: Implement quick add functionality
   }
 }

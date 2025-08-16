@@ -6,12 +6,9 @@
                 <h1 class="text-display-md text-white">Tasks</h1>
                 <p class="text-body-md text-gray-300 mt-2">Manage and organize your tasks efficiently</p>
             </div>
-            <button class="btn btn-primary" (click)="createNewTask()">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                </svg>
+            <app-button variant="primary" size="md" [icon]="true" (onClick)="createNewTask()">
                 New Task
-            </button>
+            </app-button>
         </div>
 
         <!-- Error Message -->
@@ -21,7 +18,7 @@
                     d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             <span>{{ error }}</span>
-            <button class="btn btn-sm" (click)="loadTasks()">Retry</button>
+            <app-button variant="secondary" size="sm" (onClick)="loadTasks()">Retry</app-button>
         </div>
 
         <!-- Loading State -->
@@ -99,12 +96,12 @@
                                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
                                     </path>
                                 </svg>
-                                <span class="text-caption text-gray-500 dark:text-gray-400" *ngIf="task.dueDate">
+                                <span class="text-caption text-gray-500 dark:text-gray-400">
                                     Due: {{ formatDate(task.dueDate) }}
                                 </span>
                             </div>
                             <div class="w-16 h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
-                                <div class="h-2 rounded-full"
+                                <div class="h-2 rounded-full transition-all duration-300"
                                     [class]="task.completed ? 'w-full bg-green-600' : 'w-1/2 bg-yellow-600'">
                                 </div>
                             </div>
@@ -114,22 +111,21 @@
             </div>
 
             <!-- Empty State -->
-            <div *ngIf="!loading && filteredTasks.length === 0" class="text-center py-12">
-                <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div *ngIf="filteredTasks.length === 0" class="text-center py-12">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
                     </path>
                 </svg>
-                <h3 class="text-heading-md text-gray-900 dark:text-white mb-2">
-                    {{ tasks.length === 0 ? 'No tasks yet' : 'No tasks found' }}
-                </h3>
-                <p class="text-body-sm text-gray-700 dark:text-gray-200 mb-4">
-                    {{ tasks.length === 0 ? 'Create your first task to get started' : 'No tasks match your current
-                    filters' }}
+                <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">No tasks found</h3>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                    Get started by creating a new task.
                 </p>
-                <button class="btn btn-primary" (click)="createNewTask()" *ngIf="tasks.length === 0">
-                    Create Task
-                </button>
+                <div class="mt-6">
+                    <app-button variant="primary" size="md" [icon]="true" (onClick)="createNewTask()">
+                        New Task
+                    </app-button>
+                </div>
             </div>
         </div>
     </div>

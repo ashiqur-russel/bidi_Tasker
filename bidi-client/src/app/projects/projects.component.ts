@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ButtonComponent } from '../shared/components/button';
 
 @Component({
   selector: 'app-projects',
+  standalone: true,
+  imports: [CommonModule, ButtonComponent],
   template: `
     <div class="min-h-screen bg-gray-50 dark:bg-gray-900 p-8">
       <div class="space-y-8">
@@ -11,12 +15,9 @@ import { Component } from '@angular/core';
             <h1 class="text-display-md text-white">Projects</h1>
             <p class="text-body-md text-gray-300 mt-2">Manage your projects and track progress</p>
           </div>
-          <button class="btn btn-primary">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-            </svg>
+          <app-button variant="primary" size="md" [icon]="true" (onClick)="createNewProject()">
             New Project
-          </button>
+          </app-button>
         </div>
 
         <!-- Projects Grid -->
@@ -138,11 +139,11 @@ import { Component } from '@angular/core';
                     <span class="text-caption text-gray-700 dark:text-gray-200 font-medium">45%</span>
                   </div>
                   <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
-                    <div class="w-11/20 h-2 bg-gray-600 rounded-full"></div>
+                    <div class="w-[45%] h-2 bg-gray-600 rounded-full"></div>
                   </div>
                   
                   <div class="flex items-center justify-between text-caption text-gray-500 dark:text-gray-400">
-                    <span>Due Feb 28, 2025</span>
+                    <span>Due Feb 15, 2025</span>
                     <span>9/20 tasks</span>
                   </div>
                 </div>
@@ -165,12 +166,12 @@ import { Component } from '@angular/core';
                     <span class="text-caption text-gray-700 dark:text-gray-200 font-medium">10%</span>
                   </div>
                   <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
-                    <div class="w-1/10 h-2 bg-blue-600 rounded-full"></div>
+                    <div class="w-[10%] h-2 bg-yellow-600 rounded-full"></div>
                   </div>
                   
                   <div class="flex items-center justify-between text-caption text-gray-500 dark:text-gray-400">
-                    <span>Due Apr 15, 2025</span>
-                    <span>3/30 tasks</span>
+                    <span>Due Apr 30, 2025</span>
+                    <span>2/20 tasks</span>
                   </div>
                 </div>
               </div>
@@ -192,34 +193,25 @@ import { Component } from '@angular/core';
                     <span class="text-caption text-gray-700 dark:text-gray-200 font-medium">60%</span>
                   </div>
                   <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
-                    <div class="w-3/5 h-2 bg-red-600 rounded-full"></div>
+                    <div class="w-3/5 h-2 bg-indigo-600 rounded-full"></div>
                   </div>
                   
                   <div class="flex items-center justify-between text-caption text-gray-500 dark:text-gray-400">
                     <span>Due Jan 31, 2025</span>
-                    <span>18/30 tasks</span>
+                    <span>12/20 tasks</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- Empty State -->
-          <div class="text-center py-12" *ngIf="false">
-            <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-            </svg>
-            <h3 class="text-heading-md text-gray-900 dark:text-white mb-2">No projects yet</h3>
-            <p class="text-body-sm text-gray-700 dark:text-gray-200 mb-4">Create your first project to get started</p>
-            <button class="btn btn-primary">Create Project</button>
-          </div>
         </div>
       </div>
     </div>
-  `,
-  styles: [],
-  standalone: false
+  `
 })
 export class ProjectsComponent {
-  // Component logic will be added here
+  createNewProject(): void {
+    console.log('Creating new project');
+    // TODO: Implement project creation logic
+  }
 }

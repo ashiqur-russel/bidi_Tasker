@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Notification {
   id: number;
@@ -46,6 +47,12 @@ export class AppComponent {
   
   // User menu
   userMenuOpen = false;
+
+  constructor(private router: Router) {}
+
+  isHeroRoute(): boolean {
+    return this.router.url === '/';
+  }
 
   toggleSidebar(): void {
     this.sidebarOpen = !this.sidebarOpen;

@@ -1,5 +1,5 @@
-<!-- Main Application Layout -->
-<div class="app-container">
+<!-- Conditional Layout: Show dashboard layout only for non-hero routes -->
+<div class="app-container" *ngIf="!isHeroRoute()">
   <!-- Header -->
   <header class="header">
     <div class="header-content">
@@ -239,4 +239,9 @@
 
   <!-- Sidebar Overlay -->
   <div class="sidebar-overlay" [class.open]="sidebarOpen" (click)="closeSidebar()"></div>
+</div>
+
+<!-- Hero Route: Show only router-outlet without dashboard layout -->
+<div *ngIf="isHeroRoute()">
+  <router-outlet></router-outlet>
 </div>

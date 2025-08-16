@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { KitchenSinkComponent } from './kitchen-sink/kitchen-sink.component';
+import { HeroComponent } from './hero/hero.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
+    component: HeroComponent
   },
   {
     path: 'dashboard',

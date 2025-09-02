@@ -1,35 +1,54 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterModule.forRoot([])
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [AppComponent, RouterTestingModule]
     }).compileComponents();
-  });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'bidi-client'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('bidi-client');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, bidi-client');
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should have sidebarOpen property initialized to false', () => {
+    expect(component.sidebarOpen).toBe(false);
+  });
+
+  it('should toggle sidebar when toggleSidebar is called', () => {
+    expect(component.sidebarOpen).toBe(false);
+    
+    component.toggleSidebar();
+    expect(component.sidebarOpen).toBe(true);
+    
+    component.toggleSidebar();
+    expect(component.sidebarOpen).toBe(false);
+  });
+
+  it('should close sidebar when closeSidebar is called', () => {
+    component.sidebarOpen = true;
+    expect(component.sidebarOpen).toBe(true);
+    
+    component.closeSidebar();
+    expect(component.sidebarOpen).toBe(false);
+  });
+
+  it('should return true for hero route when URL is root', () => {
+    spyOn(component['router'], 'url').and.returnValue('/');
+    expect(component.isHeroRoute()).toBe(true);
+  });
+
+  it('should return false for hero route when URL is not root', () => {
+    spyOn(component['router'], 'url').and.returnValue('/dashboard');
+    expect(component.isHeroRoute()).toBe(false);
   });
 });
